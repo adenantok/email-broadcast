@@ -18,8 +18,6 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login.for
 Route::post('/login', [LoginController::class, 'login'])->name('login.process');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('/unsubscribe/{id}', [UnsubscribeController::class, 'show'])->name('unsubscribe.show');
-Route::post('/unsubscribe/{id}', [UnsubscribeController::class, 'confirm'])->name('unsubscribe.confirm');
 
 // Contoh halaman yang dilindungi login
 Route::middleware('checklogin')->group(function () {
@@ -31,5 +29,10 @@ Route::middleware('checklogin')->group(function () {
     Route::post('/broadcast/import', [BroadcastController::class, 'importExcel'])->name('broadcast.import');
     Route::post('/broadcast/send', [BroadcastController::class, 'send'])->name('broadcast.send');
     Route::get('/broadcast/send-stream', [BroadcastController::class, 'sendStream'])->name('broadcast.send.stream'); // BARU
-    Route::get('/broadcast/logs', [BroadcastController::class, 'logs'])->name('broadcast.logs');
+    Route::get('/broadcast/logs', [BroadcastController::class, 'logs'])->name('broadcast.broadcast_logs');
+
+    Route::get('/unsubscribe/logs', [UnsubscribeController::class, 'unsubscribe_logs'])->name('unsubscribe.unsubscribe_logs');
 });
+
+Route::get('/unsubscribe/{id}', [UnsubscribeController::class, 'show'])->name('unsubscribe.show');
+Route::post('/unsubscribe/{id}', [UnsubscribeController::class, 'confirm'])->name('unsubscribe.confirm');

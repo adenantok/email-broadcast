@@ -27,8 +27,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('broadcast.logs') ?? '#' }}" class="nav-link">
-                            <i class="bi bi-journal-text me-1"></i> Log
+                        <a href="{{ route('broadcast.broadcast_logs') ?? '#' }}" class="nav-link">
+                            <i class="bi bi-journal-text me-1"></i> Broadcast Log
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('unsubscribe.unsubscribe_logs') ?? '#' }}" class="nav-link">
+                            <i class="bi bi-journal-text me-1"></i> Unsunscribe Log
                         </a>
                     </li>
                     <li class="nav-item ms-lg-3">

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\BroadcastRecipient;
 use App\Models\BroadcastUnsubscribeLog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class UnsubscribeController extends Controller
 {
@@ -42,5 +44,20 @@ class UnsubscribeController extends Controller
         ]);
 
         return view('unsubscribe.success', compact('recipient'));
+    }
+    public function unsubscribe_logs()
+    {
+        $logs = DB::table('broadcast_unsubscribe_logs')
+            ->join('broadcast_recipients', 'broadcast_unsubscribe_logs.recipient_id', '=', 'broadcast_recipients.id')
+            ->select(
+                'broadcast_recipients.email',
+                'broadcast_recipients.nama_perusahaan',
+                'broadcast_unsubscribe_logs.reason',
+                'broadcast_unsubscribe_logs.unsubscribed_at'
+            )
+            ->orderBy('broadcast_unsubscribe_logs.unsubscribed_at', 'desc')
+            ->paginate(10);
+
+        return view('unsubscribe_logs', compact('logs'));
     }
 }

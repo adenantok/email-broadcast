@@ -138,12 +138,7 @@
         </button>
     </div>
 
-    {{-- Tombol menuju log --}}
-    <div class="text-center mb-5">
-        <a href="{{ route('broadcast.logs') }}" class="btn btn-outline-secondary">
-            <i class="bi bi-file-text"></i> Lihat Log Pengiriman
-        </a>
-    </div>
+
 
 </div>
 
