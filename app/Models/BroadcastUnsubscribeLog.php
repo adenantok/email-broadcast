@@ -6,23 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Str;
 
-class BroadcastRecipient extends Model
+class BroadcastUnsubscribeLog extends Model
 {
     use HasFactory;
 
-    protected $table = 'broadcast_recipients';
-    public $incrementing = false;
+    protected $table = 'broadcast_unsubscribe_logs';
     protected $keyType = 'string';
+    public $incrementing = false;
 
     protected $fillable = [
         'id',
-        'nama_perusahaan',
-        'pic',
-        'email',
-        'is_subscribed',
+        'recipient_id',
+        'reason',
         'unsubscribed_at',
-        'last_sent_at',
-        'sent_count',
     ];
 
     protected static function booted()
@@ -34,9 +30,8 @@ class BroadcastRecipient extends Model
         });
     }
 
-    // Relasi ke log unsubscribe
-    public function unsubscribeLogs()
+    public function recipient()
     {
-        return $this->hasMany(BroadcastUnsubscribeLog::class, 'recipient_id');
+        return $this->belongsTo(BroadcastRecipient::class, 'recipient_id');
     }
 }

@@ -199,9 +199,13 @@ class BroadcastController extends Controller
                         $mail->clearCustomHeaders();
                         $mail->addAddress($email);
 
-                        $html = file_get_contents(base_path('resources/views/emails/broadcast.html'));
-                        $html = str_replace('%%EMAIL%%', $email, $html);
-                        $mail->Body = $html;
+                        $view = view('emails.broadcast', [
+                            'email' => $email,
+                            'recipient' => $recipient,
+                            'unsubscribeLink' => url("/unsubscribe?email=" . urlencode($email))
+                        ])->render();
+
+                        $mail->Body = $view;
 
                         $unsubscribeLink = url("/unsubscribe?email=" . urlencode($email));
                         $mail->addCustomHeader('List-Unsubscribe', "<mailto:adnan@aliftama.id>, <$unsubscribeLink>");

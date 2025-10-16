@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\BroadcastController;
+use App\Http\Controllers\UnsubscribeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -16,6 +17,9 @@ Route::get('/produk_dan_layanan', function () {
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login.form');
 Route::post('/login', [LoginController::class, 'login'])->name('login.process');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::get('/unsubscribe/{id}', [UnsubscribeController::class, 'show'])->name('unsubscribe.show');
+Route::post('/unsubscribe/{id}', [UnsubscribeController::class, 'confirm'])->name('unsubscribe.confirm');
 
 // Contoh halaman yang dilindungi login
 Route::middleware('checklogin')->group(function () {

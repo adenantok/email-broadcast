@@ -81,6 +81,7 @@
                             <th>Email</th>
                             <th style="width: 100px;" class="text-center">Subscribed</th>
                             <th style="width: 150px;">Terakhir Dikirim</th>
+                            <th style="width: 150px;">Waktu Unsubscribe</th>
                             <th style="width: 100px;" class="text-center">Jumlah Kirim</th>
                         </tr>
                     </thead>
@@ -99,6 +100,7 @@
                                 @endif
                             </td>
                             <td><small>{{ $r->last_sent_at ? \Carbon\Carbon::parse($r->last_sent_at)->diffForHumans() : '-' }}</small></td>
+                            <td><small>{{ $r->unsubscribed_at ? \Carbon\Carbon::parse($r->unsubscribed_at)->diffForHumans() : '-' }}</small></td>
                             <td class="text-center">
                                 <span class="badge bg-info">{{ $r->sent_count ?? 0 }}</span>
                             </td>
