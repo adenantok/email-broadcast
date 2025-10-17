@@ -97,10 +97,12 @@ class BroadcastController extends Controller
 
     public function sendStream(Request $request)
     {
-        // Set header untuk Server-Sent Events
         return response()->stream(function () {
-            // Disable output buffering
             if (ob_get_level()) ob_end_clean();
+
+            // ✅ TAMBAHAN: Set timeout lebih lama
+            set_time_limit(3600); // 1 jam
+            ini_set('max_execution_time', 3600);
 
             $recipients = DB::table('broadcast_recipients')
                 ->where('is_subscribed', true)
@@ -110,14 +112,12 @@ class BroadcastController extends Controller
             $success = 0;
             $failed = 0;
 
-            // ✅ TAMBAHAN: Cek apakah ada template dipilih (opsional)
             $template = null;
             $templateId = session('selected_template_id');
             if ($templateId && Schema::hasTable('email_templates')) {
-                $template = EmailTemplate::find($templateId);
+                $template = \App\Models\EmailTemplate::find($templateId);
             }
 
-            // Kirim total ke frontend
             echo "data: " . json_encode([
                 'type' => 'init',
                 'total' => $total,
@@ -134,10 +134,10 @@ class BroadcastController extends Controller
                 return;
             }
 
+            // ✅ OPTIMASI: Buat 1 koneksi SMTP untuk semua email
             $mail = new PHPMailer(true);
 
             try {
-                // Konfigurasi SMTP
                 $mail->isSMTP();
                 $mail->Host       = 'mail.aliftama.id';
                 $mail->SMTPAuth   = true;
@@ -145,14 +145,16 @@ class BroadcastController extends Controller
                 $mail->Password   = env('MAIL_BROADCAST_PASS');
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                 $mail->Port       = 587;
-                $mail->SMTPKeepAlive = true;
+                $mail->SMTPKeepAlive = true; // ← PENTING: Koneksi tetap hidup
+
+                // ✅ TAMBAHAN: Set SMTP timeout
+                $mail->Timeout = 30;
+                $mail->SMTPDebug = 0;
 
                 $mail->setFrom('adnan@aliftama.id', 'AlifNET Marketing');
                 $mail->addReplyTo('aktsa@aliftama.id', 'AlifNET Marketing');
                 $mail->isHTML(true);
                 $mail->CharSet = 'UTF-8';
-
-                // ✅ Subject dari template (jika ada) atau default
                 $mail->Subject = $template ? $template->subject : 'Broadcast Produk dan Layanan AlifNET';
 
                 foreach ($recipients as $index => $recipient) {
@@ -163,7 +165,9 @@ class BroadcastController extends Controller
                         continue;
                     }
 
-                    // Validasi format email
+                    // ✅ OPTIMASI: Cache DNS lookup untuk domain yang sama
+                    static $dnsCache = [];
+
                     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                         $this->logSendResult($recipient->id, 'invalid_format', 'Format email tidak valid');
 
@@ -181,9 +185,14 @@ class BroadcastController extends Controller
                         continue;
                     }
 
-                    // Validasi domain
+                    // ✅ OPTIMASI: DNS lookup dengan cache
                     $domain = substr(strrchr($email, "@"), 1);
-                    if (!checkdnsrr($domain, 'MX') && !checkdnsrr($domain, 'A')) {
+
+                    if (!isset($dnsCache[$domain])) {
+                        $dnsCache[$domain] = checkdnsrr($domain, 'MX') || checkdnsrr($domain, 'A');
+                    }
+
+                    if (!$dnsCache[$domain]) {
                         $this->logSendResult($recipient->id, 'invalid_domain', 'Domain tidak valid');
 
                         echo "data: " . json_encode([
@@ -205,14 +214,11 @@ class BroadcastController extends Controller
                         $mail->clearCustomHeaders();
                         $mail->addAddress($email);
 
-                        // ✅ MODIFIKASI: Gunakan template jika ada, atau view default
                         if ($template && file_exists(base_path('resources/views/' . $template->file_path))) {
-                            // Gunakan file HTML dari template
                             $html = file_get_contents(base_path('resources/views/' . $template->file_path));
                             $html = str_replace('%%EMAIL%%', $email, $html);
                             $mail->Body = $html;
                         } else {
-                            // Gunakan view blade default (seperti sebelumnya)
                             $view = view('emails.broadcast', [
                                 'email' => $email,
                                 'recipient' => $recipient,
@@ -226,14 +232,12 @@ class BroadcastController extends Controller
 
                         $mail->send();
 
-                        // Log ke DB
                         $this->logSendResult($recipient->id, 'success', 'Email terkirim');
                         DB::table('broadcast_recipients')->where('id', $recipient->id)->update([
                             'last_sent_at' => now(),
                             'sent_count' => DB::raw('sent_count + 1')
                         ]);
 
-                        // Kirim progress ke frontend
                         echo "data: " . json_encode([
                             'type' => 'progress',
                             'current' => $index + 1,
@@ -245,6 +249,13 @@ class BroadcastController extends Controller
                         flush();
 
                         $success++;
+
+                        // ✅ TAMBAHAN: Reconnect setiap 100 email untuk mencegah timeout
+                        if (($index + 1) % 100 === 0) {
+                            $mail->smtpClose();
+                            sleep(2); // Jeda 2 detik
+                            // Koneksi akan otomatis dibuka lagi di send() berikutnya
+                        }
                     } catch (Exception $e) {
                         $this->logSendResult($recipient->id, 'failed', $mail->ErrorInfo);
 
@@ -259,12 +270,21 @@ class BroadcastController extends Controller
                         flush();
 
                         $failed++;
+
+                        // ✅ TAMBAHAN: Reconnect jika koneksi putus
+                        if (strpos($mail->ErrorInfo, 'SMTP Error') !== false) {
+                            try {
+                                $mail->smtpClose();
+                                sleep(2);
+                            } catch (\Exception $e) {
+                                // Ignore
+                            }
+                        }
                     }
                 }
 
                 $mail->smtpClose();
 
-                // Kirim hasil akhir
                 echo "data: " . json_encode([
                     'type' => 'complete',
                     'success' => $success,
@@ -283,6 +303,7 @@ class BroadcastController extends Controller
             'Cache-Control' => 'no-cache',
             'Content-Type' => 'text/event-stream',
             'X-Accel-Buffering' => 'no',
+            'Connection' => 'keep-alive', // ✅ TAMBAHAN
         ]);
     }
 
