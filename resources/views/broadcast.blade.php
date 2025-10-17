@@ -46,6 +46,34 @@
         </div>
     </div>
 
+    {{-- Pilih Template Email --}}
+    <div class="card mb-4 border-warning">
+        <div class="card-header bg-warning text-dark">
+            <i class="bi bi-envelope-paper"></i> Pilih Template Email
+        </div>
+        <div class="card-body">
+            <div class="row align-items-end">
+                <div class="col-md-8">
+                    <label for="templateSelect" class="form-label fw-bold">Template Email:</label>
+                    <select class="form-select form-select-lg" id="templateSelect" required>
+                        <option value="">-- Pilih Template Email --</option>
+                        @foreach($templates as $template)
+                        <option value="{{ $template->id }}" data-subject="{{ $template->subject }}">
+                            {{ $template->name }}
+                        </option>
+                        @endforeach
+                    </select>
+                    <small class="text-muted">Subject: <span id="subjectPreview" class="fw-bold">-</span></small>
+                </div>
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-outline-primary w-100" id="previewBtn" disabled>
+                        <i class="bi bi-eye"></i> Preview Email
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     {{-- Form Upload Excel --}}
     <div class="card mb-4">
         <div class="card-header bg-primary text-white">📂 Import Daftar Email</div>
@@ -107,7 +135,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="7" class="text-center text-muted py-4">
+                            <td colspan="8" class="text-center text-muted py-4">
                                 <i class="bi bi-inbox" style="font-size: 2rem;"></i>
                                 <p class="mb-0 mt-2">Belum ada data penerima.</p>
                             </td>
@@ -133,17 +161,65 @@
 
     {{-- Tombol Kirim Broadcast --}}
     <div class="text-center mb-4">
-        <button type="button" class="btn btn-lg btn-danger px-5" id="sendBroadcastBtn">
+        <button type="button" class="btn btn-lg btn-danger px-5" id="sendBroadcastBtn" disabled>
             <i class="bi bi-send-fill"></i> Kirim Broadcast Sekarang
         </button>
+        <p class="text-muted mt-2"><small>* Pilih template email terlebih dahulu</small></p>
     </div>
-
-
 
 </div>
 
 <script>
+    // Handle template selection
+    document.getElementById('templateSelect').addEventListener('change', function() {
+        const selectedOption = this.options[this.selectedIndex];
+        const templateId = this.value;
+        const subject = selectedOption.getAttribute('data-subject');
+
+        const previewBtn = document.getElementById('previewBtn');
+        const sendBtn = document.getElementById('sendBroadcastBtn');
+        const subjectPreview = document.getElementById('subjectPreview');
+
+        if (templateId) {
+            previewBtn.disabled = false;
+            sendBtn.disabled = false;
+            subjectPreview.textContent = subject;
+
+            // Simpan template_id ke session via AJAX
+            fetch('{{ route("broadcast.set.template") }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({
+                    template_id: templateId
+                })
+            });
+        } else {
+            previewBtn.disabled = true;
+            sendBtn.disabled = true;
+            subjectPreview.textContent = '-';
+        }
+    });
+
+    // Handle preview button
+    document.getElementById('previewBtn').addEventListener('click', function() {
+        const templateId = document.getElementById('templateSelect').value;
+        if (templateId) {
+            window.open('{{ url("/broadcast/preview") }}/' + templateId, '_blank');
+        }
+    });
+
+    // Handle send broadcast
     document.getElementById('sendBroadcastBtn').addEventListener('click', function() {
+        const templateId = document.getElementById('templateSelect').value;
+
+        if (!templateId) {
+            alert('Pilih template email terlebih dahulu!');
+            return;
+        }
+
         if (!confirm('Kirim broadcast ke semua penerima aktif?')) {
             return;
         }
@@ -171,6 +247,9 @@
             if (data.type === 'init') {
                 document.getElementById('progressTotal').textContent = data.total;
                 addLog('📊 Total penerima: ' + data.total, 'text-info');
+                if (data.template) {
+                    addLog('📧 Template: ' + data.template, 'text-info');
+                }
             } else if (data.type === 'progress') {
                 const percentage = Math.round((data.current / data.total) * 100);
                 document.getElementById('progressBar').style.width = percentage + '%';

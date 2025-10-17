@@ -32,6 +32,9 @@ Route::middleware('checklogin')->group(function () {
     Route::get('/broadcast/logs', [BroadcastController::class, 'logs'])->name('broadcast.broadcast_logs');
 
     Route::get('/unsubscribe/logs', [UnsubscribeController::class, 'unsubscribe_logs'])->name('unsubscribe.unsubscribe_logs');
+    // Route baru untuk template
+    Route::post('/broadcast/set-template', [BroadcastController::class, 'setTemplate'])->name('broadcast.set.template');
+    Route::get('/broadcast/preview/{id}', [BroadcastController::class, 'preview'])->name('broadcast.preview');
 });
 
 Route::get('/unsubscribe/{id}', [UnsubscribeController::class, 'show'])->name('unsubscribe.show');

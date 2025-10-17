@@ -4,13 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-use App\Imports\BroadcastRecipientsImport;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use Illuminate\Support\Str;
-use Carbon\Carbon;
+use App\Models\EmailTemplate; // Tambahkan ini
+use Illuminate\Support\Facades\Schema;
 
 class BroadcastController extends Controller
 {
@@ -21,12 +20,15 @@ class BroadcastController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(10);
 
-        return view('broadcast', compact('recipients'));
+        // ✅ TAMBAHAN: Cek apakah tabel email_templates ada
+        $templates = [];
+        if (Schema::hasTable('email_templates')) {
+            $templates = EmailTemplate::where('is_active', true)->get();
+        }
+
+        return view('broadcast', compact('recipients', 'templates'));
     }
 
-    /**
-     * Import file Excel ke database
-     */
     public function importExcel(Request $request)
     {
         $request->validate([
@@ -88,17 +90,11 @@ class BroadcastController extends Controller
         return back()->with('success', "$count penerima berhasil diimpor.");
     }
 
-    /**
-     * Kirim broadcast email (redirect ke halaman streaming)
-     */
     public function send(Request $request)
     {
         return redirect()->route('broadcast.send.stream');
     }
 
-    /**
-     * Stream real-time progress pengiriman email
-     */
     public function sendStream(Request $request)
     {
         // Set header untuk Server-Sent Events
@@ -114,10 +110,18 @@ class BroadcastController extends Controller
             $success = 0;
             $failed = 0;
 
+            // ✅ TAMBAHAN: Cek apakah ada template dipilih (opsional)
+            $template = null;
+            $templateId = session('selected_template_id');
+            if ($templateId && Schema::hasTable('email_templates')) {
+                $template = EmailTemplate::find($templateId);
+            }
+
             // Kirim total ke frontend
             echo "data: " . json_encode([
                 'type' => 'init',
-                'total' => $total
+                'total' => $total,
+                'template' => $template ? $template->name : null
             ]) . "\n\n";
             flush();
 
@@ -137,8 +141,8 @@ class BroadcastController extends Controller
                 $mail->isSMTP();
                 $mail->Host       = 'mail.aliftama.id';
                 $mail->SMTPAuth   = true;
-                $mail->Username   = env('MAIL_BROADCAST_USER', 'adnan@aliftama.id');
-                $mail->Password   = env('MAIL_BROADCAST_PASS', 'Wqsawqwsa1');
+                $mail->Username   = env('MAIL_BROADCAST_USER');
+                $mail->Password   = env('MAIL_BROADCAST_PASS');
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                 $mail->Port       = 587;
                 $mail->SMTPKeepAlive = true;
@@ -147,7 +151,9 @@ class BroadcastController extends Controller
                 $mail->addReplyTo('aktsa@aliftama.id', 'AlifNET Marketing');
                 $mail->isHTML(true);
                 $mail->CharSet = 'UTF-8';
-                $mail->Subject = 'Broadcast Produk dan Layanan AlifNET';
+
+                // ✅ Subject dari template (jika ada) atau default
+                $mail->Subject = $template ? $template->subject : 'Broadcast Produk dan Layanan AlifNET';
 
                 foreach ($recipients as $index => $recipient) {
                     $email = trim($recipient->email);
@@ -199,15 +205,23 @@ class BroadcastController extends Controller
                         $mail->clearCustomHeaders();
                         $mail->addAddress($email);
 
-                        $view = view('emails.broadcast', [
-                            'email' => $email,
-                            'recipient' => $recipient,
-                            'unsubscribeLink' => url("/unsubscribe?email=" . urlencode($email))
-                        ])->render();
+                        // ✅ MODIFIKASI: Gunakan template jika ada, atau view default
+                        if ($template && file_exists(base_path('resources/views/' . $template->file_path))) {
+                            // Gunakan file HTML dari template
+                            $html = file_get_contents(base_path('resources/views/' . $template->file_path));
+                            $html = str_replace('%%EMAIL%%', $email, $html);
+                            $mail->Body = $html;
+                        } else {
+                            // Gunakan view blade default (seperti sebelumnya)
+                            $view = view('emails.broadcast', [
+                                'email' => $email,
+                                'recipient' => $recipient,
+                                'unsubscribeLink' => url("/unsubscribe/{$recipient->id}")
+                            ])->render();
+                            $mail->Body = $view;
+                        }
 
-                        $mail->Body = $view;
-
-                        $unsubscribeLink = url("/unsubscribe?email=" . urlencode($email));
+                        $unsubscribeLink = url("/unsubscribe/{$recipient->id}");
                         $mail->addCustomHeader('List-Unsubscribe', "<mailto:adnan@aliftama.id>, <$unsubscribeLink>");
 
                         $mail->send();
@@ -268,13 +282,10 @@ class BroadcastController extends Controller
         }, 200, [
             'Cache-Control' => 'no-cache',
             'Content-Type' => 'text/event-stream',
-            'X-Accel-Buffering' => 'no', // Disable nginx buffering
+            'X-Accel-Buffering' => 'no',
         ]);
     }
 
-    /**
-     * Simpan hasil pengiriman ke tabel broadcast_logs
-     */
     private function logSendResult(string $recipientId, string $status, string $message)
     {
         DB::table('broadcast_logs')->insert([
@@ -287,9 +298,6 @@ class BroadcastController extends Controller
         ]);
     }
 
-    /**
-     * Halaman log pengiriman
-     */
     public function logs()
     {
         $logs = DB::table('broadcast_logs')
@@ -299,5 +307,30 @@ class BroadcastController extends Controller
             ->paginate(20);
 
         return view('broadcast_logs', compact('logs'));
+    }
+
+    // ✅ METHOD BARU (tidak mengganggu yang lama)
+    public function setTemplate(Request $request)
+    {
+        $request->validate([
+            'template_id' => 'required|exists:email_templates,id'
+        ]);
+
+        session(['selected_template_id' => $request->template_id]);
+
+        return response()->json(['success' => true]);
+    }
+
+    public function preview($id)
+    {
+        $template = EmailTemplate::findOrFail($id);
+
+        if (file_exists(base_path('resources/views/' . $template->file_path))) {
+            $html = file_get_contents(base_path('resources/views/' . $template->file_path));
+            $html = str_replace('%%EMAIL%%', 'contoh@email.com', $html);
+            return response($html)->header('Content-Type', 'text/html');
+        }
+
+        abort(404, 'Template file tidak ditemukan');
     }
 }
