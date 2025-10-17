@@ -122,7 +122,7 @@
                                                     <a
                                                         href="https://aliftama.id/">
                                                         <img
-                                                            src="/images/logo/Logo_AlifNET.png"
+                                                            src="/images/logo/Logo_AlifNET_Internet_Desa.png"
                                                             alt="AlifNET"
                                                             style="
                                                                     display: block;
