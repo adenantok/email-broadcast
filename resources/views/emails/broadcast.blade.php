@@ -122,7 +122,7 @@
                                                     <a
                                                         href="https://aliftama.id/">
                                                         <img
-                                                            src="https://sahokv50hs6hd9ix.public.blob.vercel-storage.com/Logo-AlifNET.png"
+                                                            src="/images/logo/Logo_AlifNET.png"
                                                             alt="AlifNET"
                                                             style="
                                                                     display: block;
@@ -254,7 +254,7 @@
                                                                                     height: 40px;
                                                                                 ">
                                                                             <img
-                                                                                src="https://sahokv50hs6hd9ix.public.blob.vercel-storage.com/Icons/internet%20%282%29.png"
+                                                                                src="/images/icon/Icon_Internet.png"
                                                                                 alt="Dedicated Internet"
                                                                                 width="25"
                                                                                 height="25"
@@ -364,7 +364,7 @@
                                                                                     height: 40px;
                                                                                 ">
                                                                             <img
-                                                                                src="https://sahokv50hs6hd9ix.public.blob.vercel-storage.com/Icons/link%20%281%29.png"
+                                                                                src="/images/icon/Icon_Link.png"
                                                                                 alt="Local Loop"
                                                                                 width="26"
                                                                                 height="26"
@@ -479,7 +479,7 @@
                                                                                     height: 40px;
                                                                                 ">
                                                                             <img
-                                                                                src="https://sahokv50hs6hd9ix.public.blob.vercel-storage.com/Icons/wifi.png"
+                                                                                src="/images/icon/Icon_Wifi.png"
                                                                                 alt="Internet"
                                                                                 width="26"
                                                                                 height="26"
@@ -589,7 +589,7 @@
                                                                                     height: 40px;
                                                                                 ">
                                                                             <img
-                                                                                src="https://sahokv50hs6hd9ix.public.blob.vercel-storage.com/Icons/distributed%20%281%29.png"
+                                                                                src="/images/icon/Icon_Distributed.png"
                                                                                 alt="Network"
                                                                                 width="34"
                                                                                 height="34"
@@ -704,7 +704,7 @@
                                                                                     height: 40px;
                                                                                 ">
                                                                             <img
-                                                                                src="https://sahokv50hs6hd9ix.public.blob.vercel-storage.com/Icons/server%20%282%29.png"
+                                                                                src="/images/icon/Icon_Server.png"
                                                                                 alt="Data Center"
                                                                                 width="26"
                                                                                 height="26"
@@ -814,7 +814,7 @@
                                                                                     height: 40px;
                                                                                 ">
                                                                             <img
-                                                                                src="https://sahokv50hs6hd9ix.public.blob.vercel-storage.com/Icons/services%20%281%29.png"
+                                                                                src="/images/icon/Icon_Services.png"
                                                                                 alt="Managed Service"
                                                                                 width="28"
                                                                                 height="28"
@@ -921,7 +921,7 @@
                                                                                     height: 40px;
                                                                                 ">
                                                                             <img
-                                                                                src="https://sahokv50hs6hd9ix.public.blob.vercel-storage.com/Icons/voip%20%281%29.png"
+                                                                                src="/images/icon/Icon_Voip.png"
                                                                                 alt="PABX"
                                                                                 width="26"
                                                                                 height="26"
@@ -1041,7 +1041,7 @@
                                                                                     height: 40px;
                                                                                 ">
                                                                             <img
-                                                                                src="https://sahokv50hs6hd9ix.public.blob.vercel-storage.com/Icons/folder.png"
+                                                                                src="/images/icon/Icon_Folder.png"
                                                                                 alt="File Server"
                                                                                 width="26"
                                                                                 height="26"
@@ -1152,7 +1152,7 @@
                                                                                     height: 40px;
                                                                                 ">
                                                                             <img
-                                                                                src="https://sahokv50hs6hd9ix.public.blob.vercel-storage.com/Icons/code.png"
+                                                                                src="/images/icon/Icon_Code.png"
                                                                                 alt="App Development"
                                                                                 width="26"
                                                                                 height="26"
@@ -1255,7 +1255,7 @@
                                                                                     height: 40px;
                                                                                 ">
                                                                             <img
-                                                                                src="https://sahokv50hs6hd9ix.public.blob.vercel-storage.com/Icons/meeting.png"
+                                                                                src="/images/icon/Icon_Meeting.png"
                                                                                 alt="ICT Consultant"
                                                                                 width="26"
                                                                                 height="26"
@@ -1339,7 +1339,7 @@
                                                                     );
                                                             ">
                                                         <img
-                                                            src="https://sahokv50hs6hd9ix.public.blob.vercel-storage.com/telephone%20%281%29.png"
+                                                            src="/images/icon/Icon_Telephone.png"
                                                             alt="Call Icon"
                                                             width="20"
                                                             height="20"
@@ -1378,7 +1378,7 @@
                                                                     );
                                                             ">
                                                         <img
-                                                            src="https://sahokv50hs6hd9ix.public.blob.vercel-storage.com/message%20%281%29.png"
+                                                            src="/images/icon/Icon_Message.png"
                                                             alt="Chat Icon"
                                                             width="20"
                                                             height="20"
@@ -1460,7 +1460,7 @@
                                                                                         text-decoration: none;
                                                                                     ">
                                                                                 <img
-                                                                                    src="https://sahokv50hs6hd9ix.public.blob.vercel-storage.com/Icons/logo%20FB%20Alif.png"
+                                                                                    src="/images/icon/Icon_FB_Alif.png"
                                                                                     width="30"
                                                                                     height="30"
                                                                                     alt="Facebook"
@@ -1482,7 +1482,7 @@
                                                                                         text-decoration: none;
                                                                                     ">
                                                                                 <img
-                                                                                    src="https://sahokv50hs6hd9ix.public.blob.vercel-storage.com/Icons/Logo%20IG%20Alif.png"
+                                                                                    src="/images/icon/Icon_IG_Alif.png"
                                                                                     width="30"
                                                                                     height="30"
                                                                                     alt="Instagram"
@@ -1504,7 +1504,7 @@
                                                                                         text-decoration: none;
                                                                                     ">
                                                                                 <img
-                                                                                    src="https://sahokv50hs6hd9ix.public.blob.vercel-storage.com/Icons/Logo%20Telegram%20Alif.png"
+                                                                                    src="/images/icon/Icon_Telegram_Alif.png"
                                                                                     width="30"
                                                                                     height="30"
                                                                                     alt="Telegram"
@@ -1526,7 +1526,7 @@
                                                                                         text-decoration: none;
                                                                                     ">
                                                                                 <img
-                                                                                    src="https://sahokv50hs6hd9ix.public.blob.vercel-storage.com/Icons/Logo%20Linkedin%20Alif.png"
+                                                                                    src="/images/icon/Icon_Linkedin_Alif.png"
                                                                                     width="30"
                                                                                     height="30"
                                                                                     alt="LinkedIn"
@@ -1548,7 +1548,7 @@
                                                                                         text-decoration: none;
                                                                                     ">
                                                                                 <img
-                                                                                    src="https://sahokv50hs6hd9ix.public.blob.vercel-storage.com/Icons/Logo%20Thread%20Alif.png"
+                                                                                    src="/images/icon/Icon_Thread_Alif.png"
                                                                                     width="30"
                                                                                     height="30"
                                                                                     alt="Threads"
