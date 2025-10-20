@@ -20,6 +20,7 @@ class BroadcastRecipient extends Model
         'pic',
         'email',
         'is_subscribed',
+        'status',
         'unsubscribed_at',
         'last_sent_at',
         'sent_count',

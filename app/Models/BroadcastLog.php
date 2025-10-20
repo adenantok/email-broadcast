@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 class BroadcastLog extends Model
 {
-    protected $fillable = ['id', 'recipient_id', 'status', 'error_message', 'sent_at'];
+    protected $fillable = ['id', 'recipient_id', 'status', 'message', 'sent_at'];
     public $incrementing = false;
     protected $keyType = 'string';
 

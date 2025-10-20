@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->uuid('recipient_id'); // relasi ke broadcast_recipients.id
             $table->string('status'); // 'success', 'invalid_email', 'invalid_domain', 'smtp_error', dll
-            $table->text('message')->nullable(); // pesan error lengkap
+            $table->string('message');
             $table->timestamp('sent_at')->nullable();
             $table->timestamps();
 

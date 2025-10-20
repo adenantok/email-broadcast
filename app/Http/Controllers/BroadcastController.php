@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PHPMailer\PHPMailer\PHPMailer;
@@ -13,20 +14,37 @@ use Illuminate\Support\Facades\Schema;
 
 class BroadcastController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // Ambil data penerima (pagination)
-        $recipients = DB::table('broadcast_recipients')
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
+        $query = DB::table('broadcast_recipients');
 
-        // ✅ TAMBAHAN: Cek apakah tabel email_templates ada
-        $templates = [];
-        if (Schema::hasTable('email_templates')) {
-            $templates = EmailTemplate::where('is_active', true)->get();
+        if ($search = $request->get('search')) {
+            $query->where(function ($q) use ($search) {
+                $q->where('nama_perusahaan', 'like', "%$search%")
+                    ->orWhere('pic', 'like', "%$search%")
+                    ->orWhere('email', 'like', "%$search%");
+            });
         }
 
-        return view('broadcast', compact('recipients', 'templates'));
+        $recipients = $query->orderBy('nama_perusahaan', 'asc')
+            ->paginate(10)->appends($request->only('search'));
+
+        $templates = Schema::hasTable('email_templates')
+            ? EmailTemplate::where('is_active', true)->get()
+            : [];
+
+        return Inertia::render('Broadcast/Index', [
+            'recipients' => $recipients,
+            'templates' => $templates,
+            'filters' => [
+                'search' => $request->get('search', ''),
+            ],
+            // ✅ TAMBAHAN: Flash message
+            'flash' => [
+                'success' => session('success'),
+                'error' => session('error'),
+            ],
+        ]);
     }
 
     public function importExcel(Request $request)
@@ -79,6 +97,7 @@ class BroadcastController extends Controller
                     'pic' => $pic,
                     'email' => $email,
                     'is_subscribed' => true,
+                    'status' => '',
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
@@ -100,8 +119,7 @@ class BroadcastController extends Controller
         return response()->stream(function () {
             if (ob_get_level()) ob_end_clean();
 
-            // ✅ TAMBAHAN: Set timeout lebih lama
-            set_time_limit(3600); // 1 jam
+            set_time_limit(3600);
             ini_set('max_execution_time', 3600);
 
             $recipients = DB::table('broadcast_recipients')
@@ -111,6 +129,11 @@ class BroadcastController extends Controller
             $total = $recipients->count();
             $success = 0;
             $failed = 0;
+
+            // ✅ Batch updates - simpan ID untuk update nanti
+            $successIds = [];
+            $failedIds = [];
+            $batchSize = 50; // Update setiap 50 email
 
             $template = null;
             $templateId = session('selected_template_id');
@@ -134,7 +157,6 @@ class BroadcastController extends Controller
                 return;
             }
 
-            // ✅ OPTIMASI: Buat 1 koneksi SMTP untuk semua email
             $mail = new PHPMailer(true);
 
             try {
@@ -145,9 +167,8 @@ class BroadcastController extends Controller
                 $mail->Password   = env('MAIL_BROADCAST_PASS');
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                 $mail->Port       = 587;
-                $mail->SMTPKeepAlive = true; // ← PENTING: Koneksi tetap hidup
+                $mail->SMTPKeepAlive = true;
 
-                // ✅ TAMBAHAN: Set SMTP timeout
                 $mail->Timeout = 30;
                 $mail->SMTPDebug = 0;
 
@@ -162,14 +183,16 @@ class BroadcastController extends Controller
 
                     if (empty($email)) {
                         $failed++;
+                        $failedIds[] = $recipient->id;
                         continue;
                     }
 
-                    // ✅ OPTIMASI: Cache DNS lookup untuk domain yang sama
                     static $dnsCache = [];
 
+                    // Validasi format email
                     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                         $this->logSendResult($recipient->id, 'invalid_format', 'Format email tidak valid');
+                        $failedIds[] = $recipient->id;
 
                         echo "data: " . json_encode([
                             'type' => 'progress',
@@ -182,10 +205,17 @@ class BroadcastController extends Controller
                         flush();
 
                         $failed++;
+
+                        // ✅ Batch update setiap $batchSize
+                        if (count($failedIds) >= $batchSize) {
+                            $this->batchUpdateRecipients($failedIds, 'failed');
+                            $failedIds = []; // Reset
+                        }
+
                         continue;
                     }
 
-                    // ✅ OPTIMASI: DNS lookup dengan cache
+                    // Validasi domain
                     $domain = substr(strrchr($email, "@"), 1);
 
                     if (!isset($dnsCache[$domain])) {
@@ -194,18 +224,25 @@ class BroadcastController extends Controller
 
                     if (!$dnsCache[$domain]) {
                         $this->logSendResult($recipient->id, 'invalid_domain', 'Domain tidak valid');
+                        $failedIds[] = $recipient->id;
 
                         echo "data: " . json_encode([
                             'type' => 'progress',
                             'current' => $index + 1,
                             'total' => $total,
                             'status' => 'error',
+                            'message' => 'Domain tidak valid',
                             'email' => $email,
-                            'message' => 'Domain tidak valid'
                         ]) . "\n\n";
                         flush();
 
                         $failed++;
+
+                        if (count($failedIds) >= $batchSize) {
+                            $this->batchUpdateRecipients($failedIds, 'failed');
+                            $failedIds = [];
+                        }
+
                         continue;
                     }
 
@@ -232,11 +269,9 @@ class BroadcastController extends Controller
 
                         $mail->send();
 
+                        // ✅ Simpan ID untuk batch update
+                        $successIds[] = $recipient->id;
                         $this->logSendResult($recipient->id, 'success', 'Email terkirim');
-                        DB::table('broadcast_recipients')->where('id', $recipient->id)->update([
-                            'last_sent_at' => now(),
-                            'sent_count' => DB::raw('sent_count + 1')
-                        ]);
 
                         echo "data: " . json_encode([
                             'type' => 'progress',
@@ -250,14 +285,20 @@ class BroadcastController extends Controller
 
                         $success++;
 
-                        // ✅ TAMBAHAN: Reconnect setiap 100 email untuk mencegah timeout
+                        // ✅ Batch update recipients setiap $batchSize email berhasil
+                        if (count($successIds) >= $batchSize) {
+                            $this->batchUpdateRecipients($successIds, 'sent');
+                            $successIds = []; // Reset array
+                        }
+
+                        // Reconnect setiap 100 email
                         if (($index + 1) % 100 === 0) {
                             $mail->smtpClose();
-                            sleep(2); // Jeda 2 detik
-                            // Koneksi akan otomatis dibuka lagi di send() berikutnya
+                            sleep(2);
                         }
                     } catch (Exception $e) {
                         $this->logSendResult($recipient->id, 'failed', $mail->ErrorInfo);
+                        $failedIds[] = $recipient->id;
 
                         echo "data: " . json_encode([
                             'type' => 'progress',
@@ -271,7 +312,12 @@ class BroadcastController extends Controller
 
                         $failed++;
 
-                        // ✅ TAMBAHAN: Reconnect jika koneksi putus
+                        if (count($failedIds) >= $batchSize) {
+                            $this->batchUpdateRecipients($failedIds, 'failed');
+                            $failedIds = [];
+                        }
+
+                        // Reconnect jika koneksi putus
                         if (strpos($mail->ErrorInfo, 'SMTP Error') !== false) {
                             try {
                                 $mail->smtpClose();
@@ -284,6 +330,14 @@ class BroadcastController extends Controller
                 }
 
                 $mail->smtpClose();
+
+                // ✅ Update sisa recipients yang belum ter-update (sisa batch)
+                if (count($successIds) > 0) {
+                    $this->batchUpdateRecipients($successIds, 'sent');
+                }
+                if (count($failedIds) > 0) {
+                    $this->batchUpdateRecipients($failedIds, 'failed');
+                }
 
                 echo "data: " . json_encode([
                     'type' => 'complete',
@@ -303,20 +357,66 @@ class BroadcastController extends Controller
             'Cache-Control' => 'no-cache',
             'Content-Type' => 'text/event-stream',
             'X-Accel-Buffering' => 'no',
-            'Connection' => 'keep-alive', // ✅ TAMBAHAN
+            'Connection' => 'keep-alive',
         ]);
     }
 
-    private function logSendResult(string $recipientId, string $status, string $message)
+    private function batchUpdateRecipients(array $recipientIds, string $status)
     {
-        DB::table('broadcast_logs')->insert([
-            'id' => Str::uuid()->toString(),
-            'recipient_id' => $recipientId,
-            'status' => $status,
-            'message' => $message,
-            'sent_at' => now(),
-            'created_at' => now(),
-        ]);
+        if (empty($recipientIds)) {
+            return;
+        }
+
+        try {
+            $updateData = [
+                'status' => $status,
+                'updated_at' => now(),
+            ];
+
+            // Tambahkan last_sent_at dan increment sent_count hanya untuk status 'sent'
+            if ($status === 'sent') {
+                $updateData['last_sent_at'] = now();
+
+                // ✅ Bulk update dengan 1 query saja
+                DB::table('broadcast_recipients')
+                    ->whereIn('id', $recipientIds)
+                    ->update([
+                        'status' => $status,
+                        'last_sent_at' => now(),
+                        'sent_count' => DB::raw('sent_count + 1'),
+                        'updated_at' => now(),
+                    ]);
+            } else {
+                // Untuk status failed/invalid, update tanpa increment
+                DB::table('broadcast_recipients')
+                    ->whereIn('id', $recipientIds)
+                    ->update($updateData);
+            }
+
+            Logger()->info("Batch updated {count} recipients with status: {status}", [
+                'count' => count($recipientIds),
+                'status' => $status
+            ]);
+        } catch (\Exception $e) {
+            Logger()->error('Batch update recipients failed: ' . $e->getMessage());
+        }
+    }
+
+    private function logSendResult($recipientId, $status, $message = null)
+    {
+        try {
+            DB::table('broadcast_logs')->insert([
+                'id' => \Illuminate\Support\Str::uuid(),
+                'recipient_id' => $recipientId,
+                'status' => $status,
+                'message' => $message,
+                'sent_at' => now(),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        } catch (\Exception $e) {
+            Logger()->error('Failed to log broadcast result: ' . $e->getMessage());
+        }
     }
 
     public function logs()
@@ -330,7 +430,6 @@ class BroadcastController extends Controller
         return view('broadcast_logs', compact('logs'));
     }
 
-    // ✅ METHOD BARU (tidak mengganggu yang lama)
     public function setTemplate(Request $request)
     {
         $request->validate([
@@ -353,5 +452,54 @@ class BroadcastController extends Controller
         }
 
         abort(404, 'Template file tidak ditemukan');
+    }
+
+    public function updateRecipient(Request $request, $id)
+    {
+        $request->validate([
+            'nama_perusahaan' => 'required|string|max:255',
+            'pic' => 'nullable|string|max:255',
+            'email' => 'required|email|max:255|unique:broadcast_recipients,email,' . $id . ',id',
+        ]);
+
+        $recipient = DB::table('broadcast_recipients')->where('id', $id)->first();
+
+        if (!$recipient) {
+            return back()->with('error', 'Data tidak ditemukan');
+        }
+
+        // Cek apakah email berubah
+        $emailChanged = $recipient->email !== $request->email;
+
+        // Data yang akan diupdate
+        $updateData = [
+            'nama_perusahaan' => $request->nama_perusahaan,
+            'pic' => $request->pic,
+            'email' => $request->email,
+            'updated_at' => now(),
+        ];
+
+        // Jika email berubah, set status jadi 'updated'
+        if ($emailChanged) {
+            $updateData['status'] = 'updated';
+        }
+
+        DB::table('broadcast_recipients')
+            ->where('id', $id)
+            ->update($updateData);
+
+        return back()->with('success', 'Data berhasil diupdate' . ($emailChanged ? ' (Status berubah menjadi Updated)' : ''));
+    }
+
+    // BONUS: Method untuk delete recipient
+    public function deleteRecipient($id)
+    {
+        $deleted = DB::table('broadcast_recipients')->where('id', $id)->delete();
+
+        if ($deleted) {
+            return back()->with('success', 'Data berhasil dihapus');
+        }
+
+        return back()->with('error', 'Data tidak ditemukan');
     }
 }

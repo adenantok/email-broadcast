@@ -35,6 +35,9 @@ Route::middleware('checklogin')->group(function () {
     // Route baru untuk template
     Route::post('/broadcast/set-template', [BroadcastController::class, 'setTemplate'])->name('broadcast.set.template');
     Route::get('/broadcast/preview/{id}', [BroadcastController::class, 'preview'])->name('broadcast.preview');
+
+    Route::delete('/broadcast/recipients/{id}', [BroadcastController::class, 'deleteRecipient'])->name('broadcast.delete');
+    Route::put('/broadcast/recipients/{id}', [BroadcastController::class, 'updateRecipient'])->name('broadcast.update');
 });
 
 Route::get('/unsubscribe/{id}', [UnsubscribeController::class, 'show'])->name('unsubscribe.show');

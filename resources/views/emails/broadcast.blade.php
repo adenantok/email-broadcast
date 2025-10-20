@@ -120,9 +120,10 @@
                                                                 solid #e6e8ee;
                                                         ">
                                                     <a
-                                                        href="https://aliftama.id/">
+                                                        href="https://aliftama.id/"
+                                                        target="_blank">
                                                         <img
-                                                            src="/images/logo/Logo_AlifNET_Internet_Desa.png"
+                                                            src="http://materi.aliftama.id/images/logo/Logo_AlifNET_Internet_Desa.png"
                                                             alt="AlifNET"
                                                             style="
                                                                     display: block;
@@ -254,7 +255,7 @@
                                                                                     height: 40px;
                                                                                 ">
                                                                             <img
-                                                                                src="/images/icon/Icon_Internet.png"
+                                                                                src="http://materi.aliftama.id/images/icon/Icon_Internet.png"
                                                                                 alt="Dedicated Internet"
                                                                                 width="25"
                                                                                 height="25"
@@ -364,7 +365,7 @@
                                                                                     height: 40px;
                                                                                 ">
                                                                             <img
-                                                                                src="/images/icon/Icon_Link.png"
+                                                                                src="http://materi.aliftama.id/images/icon/Icon_Link.png"
                                                                                 alt="Local Loop"
                                                                                 width="26"
                                                                                 height="26"
@@ -479,7 +480,7 @@
                                                                                     height: 40px;
                                                                                 ">
                                                                             <img
-                                                                                src="/images/icon/Icon_Wifi.png"
+                                                                                src="http://materi.aliftama.id/images/icon/Icon_Wifi.png"
                                                                                 alt="Internet"
                                                                                 width="26"
                                                                                 height="26"
@@ -589,7 +590,7 @@
                                                                                     height: 40px;
                                                                                 ">
                                                                             <img
-                                                                                src="/images/icon/Icon_Distributed.png"
+                                                                                src="http://materi.aliftama.id/images/icon/Icon_Distributed.png"
                                                                                 alt="Network"
                                                                                 width="34"
                                                                                 height="34"
@@ -704,7 +705,7 @@
                                                                                     height: 40px;
                                                                                 ">
                                                                             <img
-                                                                                src="/images/icon/Icon_Server.png"
+                                                                                src="http://materi.aliftama.id/images/icon/Icon_Server.png"
                                                                                 alt="Data Center"
                                                                                 width="26"
                                                                                 height="26"
@@ -814,7 +815,7 @@
                                                                                     height: 40px;
                                                                                 ">
                                                                             <img
-                                                                                src="/images/icon/Icon_Services.png"
+                                                                                src="http://materi.aliftama.id/images/icon/Icon_Services.png"
                                                                                 alt="Managed Service"
                                                                                 width="28"
                                                                                 height="28"
@@ -921,7 +922,7 @@
                                                                                     height: 40px;
                                                                                 ">
                                                                             <img
-                                                                                src="/images/icon/Icon_Voip.png"
+                                                                                src="http://materi.aliftama.id/images/icon/Icon_Voip.png"
                                                                                 alt="PABX"
                                                                                 width="26"
                                                                                 height="26"
@@ -1041,7 +1042,7 @@
                                                                                     height: 40px;
                                                                                 ">
                                                                             <img
-                                                                                src="/images/icon/Icon_Folder.png"
+                                                                                src="http://materi.aliftama.id/images/icon/Icon_Folder.png"
                                                                                 alt="File Server"
                                                                                 width="26"
                                                                                 height="26"
@@ -1152,7 +1153,7 @@
                                                                                     height: 40px;
                                                                                 ">
                                                                             <img
-                                                                                src="/images/icon/Icon_Code.png"
+                                                                                src="http://materi.aliftama.id/images/icon/Icon_Code.png"
                                                                                 alt="App Development"
                                                                                 width="26"
                                                                                 height="26"
@@ -1255,7 +1256,7 @@
                                                                                     height: 40px;
                                                                                 ">
                                                                             <img
-                                                                                src="/images/icon/Icon_Meeting.png"
+                                                                                src="http://materi.aliftama.id/images/icon/Icon_Meeting.png"
                                                                                 alt="ICT Consultant"
                                                                                 width="26"
                                                                                 height="26"
@@ -1315,6 +1316,7 @@
                                                     <!-- Call Us Button -->
                                                     <a
                                                         href="https://s.id/CallAlifNET "
+                                                        target="_blank"
                                                         style="
                                                                 display: inline-flex;
                                                                 align-items: center;
@@ -1339,7 +1341,7 @@
                                                                     );
                                                             ">
                                                         <img
-                                                            src="/images/icon/Icon_Telephone.png"
+                                                            src="http://materi.aliftama.id/images/icon/Icon_Telephone.png"
                                                             alt="Call Icon"
                                                             width="20"
                                                             height="20"
@@ -1354,6 +1356,7 @@
                                                     <!-- Chat Us Button -->
                                                     <a
                                                         href="https://wa.me/62811287711"
+                                                        target="_blank"
                                                         style="
                                                                 display: inline-flex;
                                                                 align-items: center;
@@ -1378,7 +1381,7 @@
                                                                     );
                                                             ">
                                                         <img
-                                                            src="/images/icon/Icon_Message.png"
+                                                            src="http://materi.aliftama.id/images/icon/Icon_Message.png"
                                                             alt="Chat Icon"
                                                             width="20"
                                                             height="20"
@@ -1429,10 +1432,7 @@
                                                                             line-height: 1.3;
                                                                             text-align: center;
                                                                         ">
-                                                                    Social
-                                                                    Media
-                                                                    AlifNET
-                                                                    Group
+                                                                    Follow Us
                                                                 </h3>
 
                                                                 <!-- Social Media Icons -->
@@ -1456,11 +1456,12 @@
                                                                                 ">
                                                                             <a
                                                                                 href="https://www.facebook.com/alifnetgroup"
+                                                                                target="_blank"
                                                                                 style="
                                                                                         text-decoration: none;
                                                                                     ">
                                                                                 <img
-                                                                                    src="/images/icon/Icon_FB_Alif.png"
+                                                                                    src="http://materi.aliftama.id/images/icon/Icon_FB_Alif.png"
                                                                                     width="30"
                                                                                     height="30"
                                                                                     alt="Facebook"
@@ -1478,11 +1479,12 @@
                                                                                 ">
                                                                             <a
                                                                                 href="https://www.instagram.com/alifnetgroup/"
+                                                                                target="_blank"
                                                                                 style="
                                                                                         text-decoration: none;
                                                                                     ">
                                                                                 <img
-                                                                                    src="/images/icon/Icon_IG_Alif.png"
+                                                                                    src="http://materi.aliftama.id/images/icon/Icon_IG_Alif.png"
                                                                                     width="30"
                                                                                     height="30"
                                                                                     alt="Instagram"
@@ -1500,11 +1502,12 @@
                                                                                 ">
                                                                             <a
                                                                                 href="https://t.me/onymartin"
+                                                                                target="_blank"
                                                                                 style="
                                                                                         text-decoration: none;
                                                                                     ">
                                                                                 <img
-                                                                                    src="/images/icon/Icon_Telegram_Alif.png"
+                                                                                    src="http://materi.aliftama.id/images/icon/Icon_Telegram_Alif.png"
                                                                                     width="30"
                                                                                     height="30"
                                                                                     alt="Telegram"
@@ -1522,11 +1525,12 @@
                                                                                 ">
                                                                             <a
                                                                                 href="https://www.linkedin.com/company/alifnetgroup/"
+                                                                                target="_blank"
                                                                                 style="
                                                                                         text-decoration: none;
                                                                                     ">
                                                                                 <img
-                                                                                    src="/images/icon/Icon_Linkedin_Alif.png"
+                                                                                    src="http://materi.aliftama.id/images/icon/Icon_Linkedin_Alif.png"
                                                                                     width="30"
                                                                                     height="30"
                                                                                     alt="LinkedIn"
@@ -1544,11 +1548,12 @@
                                                                                 ">
                                                                             <a
                                                                                 href="https://www.threads.com/@alifnetgroup"
+                                                                                target="_blank"
                                                                                 style="
                                                                                         text-decoration: none;
                                                                                     ">
                                                                                 <img
-                                                                                    src="/images/icon/Icon_Thread_Alif.png"
+                                                                                    src="http://materi.aliftama.id/images/icon/Icon_Thread_Alif.png"
                                                                                     width="30"
                                                                                     height="30"
                                                                                     alt="Threads"
@@ -1677,6 +1682,7 @@
                                                         silakan Klik
                                                         <a
                                                             href="{{ url('/unsubscribe/' . $recipient->id) }}"
+                                                            target="_blank"
                                                             style="
                                                                     color: #004aad;
                                                                     text-decoration: none;

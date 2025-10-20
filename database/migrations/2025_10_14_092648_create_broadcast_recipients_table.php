@@ -14,6 +14,7 @@ return new class extends Migration
             $table->string('pic', 255)->nullable();
             $table->string('email', 255)->unique();
             $table->boolean('is_subscribed')->default(true);
+            $table->string('status')->default('pending');
             $table->timestamp('unsubscribed_at')->nullable();
             $table->timestamp('last_sent_at')->nullable();
             $table->integer('sent_count')->default(0);
