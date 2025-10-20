@@ -252,9 +252,11 @@ class BroadcastController extends Controller
                         $mail->addAddress($email);
 
                         if ($template && file_exists(base_path('resources/views/' . $template->file_path))) {
-                            $html = file_get_contents(base_path('resources/views/' . $template->file_path));
-                            $html = str_replace('%%EMAIL%%', $email, $html);
-                            $mail->Body = $html;
+                            $mail->Body = view(str_replace(['/', '.blade.php'], ['.', ''], $template->file_path), [
+                                'email' => $email,
+                                'recipient' => $recipient,
+                                'unsubscribeLink' => url("/unsubscribe/{$recipient->id}")
+                            ])->render();
                         } else {
                             $view = view('emails.broadcast', [
                                 'email' => $email,

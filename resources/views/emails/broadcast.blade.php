@@ -1681,7 +1681,7 @@
                                                         seperti ini lagi,
                                                         silakan Klik
                                                         <a
-                                                            href="{{ url('/unsubscribe/' . $recipient->id) }}"
+                                                            href="https://materi.aliftama.id/unsubscribe/{{ $recipient->id }}"
                                                             target="_blank"
                                                             style="
                                                                     color: #004aad;
