@@ -195,7 +195,7 @@
                                                         <tr>
                                                             <!-- Call Free Button -->
                                                             <td style="padding: 0 10px;">
-                                                                <a href="https://s.id/CallAlifNET" style="
+                                                                <a href="https://s.id/CallAlifNET" target="_blank" style="
                                                                     display: inline-block;
                                                                     background-color: #ffffff;
                                                                     color: #0a1e5e;
