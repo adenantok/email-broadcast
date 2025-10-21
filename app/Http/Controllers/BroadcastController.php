@@ -172,11 +172,16 @@ class BroadcastController extends Controller
                 $mail->Timeout = 30;
                 $mail->SMTPDebug = 0;
 
-                $mail->setFrom('adnan@aliftama.id', 'AlifNET Marketing');
-                $mail->addReplyTo('aktsa@aliftama.id', 'AlifNET Marketing');
+                // ✅ FIX: Email pengirim dan nama yang muncul di inbox
+                $mail->setFrom('sales@aliftama.id', 'Hayyi Birrulwalidaini Ihsan');
+
+                // ✅ FIX: Reply-To ke email Adnan
+                // $mail->addReplyTo('hayyi@aliftama.id', 'Hayyi Birrulwalidaini Ihsan');
+
                 $mail->isHTML(true);
                 $mail->CharSet = 'UTF-8';
                 $mail->Subject = $template ? $template->subject : 'Broadcast Produk dan Layanan AlifNET';
+
 
                 foreach ($recipients as $index => $recipient) {
                     $email = trim($recipient->email);

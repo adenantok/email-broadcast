@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<html
-    xmlns:v="urn:schemas-microsoft-com:vml"
-    xmlns:o="urn:schemas-microsoft-com:office:office"
-    lang="id">
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="id">
 
 <head>
     <title>Selamat Hari Santri Nasional 2025 - AlifNET</title>
@@ -62,21 +59,14 @@
     </style>
 </head>
 
-<body
-    style="
+<body style="
         margin: 0;
         padding: 0;
         background-color: #f6f7fb;
         -webkit-text-size-adjust: none;
         text-size-adjust: none;
     ">
-    <table
-        width="100%"
-        border="0"
-        cellpadding="0"
-        cellspacing="0"
-        role="presentation"
-        style="
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="
             mso-table-lspace: 0pt;
             mso-table-rspace: 0pt;
             background-color: #f6f7fb;
@@ -84,48 +74,30 @@
         <tbody>
             <tr>
                 <td>
-                    <table
-                        align="center"
-                        width="100%"
-                        border="0"
-                        cellpadding="0"
-                        cellspacing="0"
-                        role="presentation"
+                    <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation"
                         style="mso-table-lspace: 0pt; mso-table-rspace: 0pt">
                         <tbody>
                             <tr>
                                 <td>
-                                    <table
-                                        class="row-content"
-                                        align="center"
-                                        border="0"
-                                        cellpadding="0"
-                                        cellspacing="0"
-                                        role="presentation"
-                                        style="
+                                    <table class="row-content" align="center" border="0" cellpadding="0" cellspacing="0"
+                                        role="presentation" style="
                                             mso-table-lspace: 0pt;
                                             mso-table-rspace: 0pt;
                                             background-color: #ffffff;
                                             color: #000000;
                                             width: 600px;
                                             margin: 0px auto;
-                                        "
-                                        width="600">
+                                        " width="600">
                                         <tbody>
                                             <!-- Hero Section with Navy Blue Background - EXTENDED -->
                                             <tr>
-                                                <td
-                                                    align="center"
-                                                    style="
+                                                <td align="center" style="
                                                         background: #0a1e5e;
                                                         padding: 40px 0px 30px;
                                                     ">
                                                     <!-- HARI SANTRI NASIONAL Image/Text -->
-                                                    <img
-                                                        src="https://materi.aliftama.id/images/Selamat_Hari_Santri_2025.png"
-                                                        alt="HARI SANTRI NASIONAL"
-                                                        width="600"
-                                                        style="
+                                                    <img src="https://materi.aliftama.id/images/Selamat_Hari_Santri_2025.png"
+                                                        alt="HARI SANTRI NASIONAL" width="600" style="
                                                             display: block;
                                                             margin: 0 auto 10px;
                                                             max-width: 100%;
@@ -133,11 +105,8 @@
                                                         " />
 
                                                     <!-- Main Image (3 People) -->
-                                                    <img
-                                                        src="https://materi.aliftama.id/images/Ustadz_Santri_Logo_Hari_Santri_2025.png"
-                                                        alt="Santri Indonesia"
-                                                        width="600"
-                                                        style="
+                                                    <img src="https://materi.aliftama.id/images/Ustadz_Santri_Logo_Hari_Santri_2025.png"
+                                                        alt="Santri Indonesia" width="600" style="
                                                             display: block;
                                                             margin: 0 auto;
                                                             max-width: 100%;
@@ -172,7 +141,8 @@
                                                         color: #ffffff;
                                                         font-weight: 600;
                                                         line-height: 1.5;
-                                                    ">Jayakan Negeri dengan Jihad Intelektual di Era Transformasi Digital</p>
+                                                    ">Jayakan Negeri dengan Jihad Intelektual di Era Transformasi
+                                                        Digital</p>
 
                                                     <p style="
                                                         margin: 20px 0 0;
@@ -181,7 +151,10 @@
                                                         color: #ffffff;
                                                         text-align: center;
                                                         line-height: 1.6;
-                                                    ">Semoga dengan Teknologi Informasi dan Komunikasi, <strong>SANTRI</strong> siap menghadapi tantangan Industri 5.0 dan Society 5.0</p>
+                                                    ">Semoga dengan Teknologi Informasi dan Komunikasi,
+                                                        <strong>SANTRI</strong> siap menghadapi tantangan Industri 5.0
+                                                        dan Society 5.0
+                                                    </p>
                                                 </td>
                                             </tr>
 
@@ -191,75 +164,89 @@
                                                     background: #0a1e5e;
                                                     padding: 0 30px 40px;
                                                 ">
-                                                    <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="margin: 0 auto;">
+                                                    <table border="0" cellpadding="0" cellspacing="0"
+                                                        role="presentation" style="margin: 0 auto;">
                                                         <tr>
                                                             <!-- Call Free Button -->
-                                                            <td style="padding: 0 10px;">
-                                                                <a href="https://s.id/CallAlifNET" target="_blank" style="
-                                                                    display: inline-block;
-                                                                    background-color: #ffffff;
-                                                                    color: #0a1e5e;
-                                                                    font-family: 'Segoe UI', Arial, sans-serif;
-                                                                    font-size: 16px;
-                                                                    font-weight: 600;
-                                                                    text-decoration: none;
-                                                                    padding: 12px 30px;
-                                                                    border-radius: 8px;
-                                                                "><img
-                                                                        src="http://materi.aliftama.id/images/icon/Icon_Telephone_Hitam.png"
-                                                                        alt="Call Icon"
-                                                                        width="20"
-                                                                        height="20"
-                                                                        style="
-                                                                    display: inline-block;
-                                                                    vertical-align: middle;
-                                                                    border: 0;
-                                                                " />Call Free</a>
+                                                            <td style="padding: 5px 8px;">
+                                                                <a href="https://s.id/CallAlifNET" target="_blank"
+                                                                    style="
+                                                                        display: inline-block;
+                                                                        background-color: #ffffff;
+                                                                        border-radius: 8px;
+                                                                        text-decoration: none;
+                                                                        padding: 12px 20px;
+                                                                    ">
+                                                                    <table border="0" cellpadding="0" cellspacing="0"
+                                                                        role="presentation">
+                                                                        <tr>
+                                                                            <td valign="middle"
+                                                                                style="padding-right: 8px;">
+                                                                                <img src="http://materi.aliftama.id/images/icon/Icon_Telephone_Hitam.png"
+                                                                                    alt="Call" width="20" height="20"
+                                                                                    style="display: block; border: 0;" />
+                                                                            </td>
+                                                                            <td valign="middle">
+                                                                                <span style="
+                                                                                color: #000000;
+                                                                                font-family: 'Segoe UI', Arial, sans-serif;
+                                                                                font-size: 16px;
+                                                                                font-weight: 600;
+                                                                                line-height: 20px;
+                                                                            ">Call Free</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </a>
                                                             </td>
+
                                                             <!-- Chat Us Button -->
-                                                            <td style="padding: 0 10px;">
-                                                                <a href="https://wa.me/62811287711" target="_blank" style="
+                                                            <td style="padding: 5px 8px;">
+                                                                <a href="https://wa.me/62811287711" target="_blank"
+                                                                    style="
                                                                     display: inline-block;
                                                                     background-color: #ffffff;
-                                                                    color: #0a1e5e;
-                                                                    font-family: 'Segoe UI', Arial, sans-serif;
-                                                                    font-size: 16px;
-                                                                    font-weight: 600;
-                                                                    text-decoration: none;
-                                                                    padding: 12px 30px;
                                                                     border-radius: 8px;
+                                                                    text-decoration: none;
+                                                                    padding: 12px 20px;
                                                                 ">
-                                                                    <img
-                                                                        src="http://materi.aliftama.id/images/icon/Icon_Message_Hitam.png"
-                                                                        alt="Chat Icon"
-                                                                        width="20"
-                                                                        height="20"
-                                                                        style="
-                                                                    display: inline-block;
-                                                                    vertical-align: middle;
-                                                                    border: 0;
-                                                                " />Chat Us</a>
+                                                                    <table border="0" cellpadding="0" cellspacing="0"
+                                                                        role="presentation">
+                                                                        <tr>
+                                                                            <td valign="middle"
+                                                                                style="padding-right: 8px;">
+                                                                                <img src="http://materi.aliftama.id/images/icon/Icon_Message_Hitam.png"
+                                                                                    alt="Chat" width="20" height="20"
+                                                                                    style="display: block; border: 0;" />
+                                                                            </td>
+                                                                            <td valign="middle">
+                                                                                <span style="
+                                                                                color: #000000;
+                                                                                font-family: 'Segoe UI', Arial, sans-serif;
+                                                                                font-size: 16px;
+                                                                                font-weight: 600;
+                                                                                line-height: 20px;
+                                                                            ">Chat Us</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </a>
                                                             </td>
                                                         </tr>
+
                                                     </table>
                                                 </td>
                                             </tr>
 
                                             <!-- AlifNET Logo -->
                                             <tr>
-                                                <td
-                                                    align="center"
-                                                    style="
+                                                <td align="center" style="
                                                             padding-bottom: 20px;
                                                             padding-top: 20px;
                                                         ">
-                                                    <a
-                                                        href="https://aliftama.id/"
-                                                        target="_blank">
-                                                        <img
-                                                            src="http://materi.aliftama.id/images/logo/Logo_AlifNET_Internet_Desa.png"
-                                                            alt="AlifNET"
-                                                            style="
+                                                    <a href="https://aliftama.id/" target="_blank">
+                                                        <img src="http://materi.aliftama.id/images/logo/Logo_AlifNET_Internet_Desa.png"
+                                                            alt="AlifNET" style="
                                                                     display: block;
                                                                     margin: 0
                                                                         auto;
@@ -289,13 +276,8 @@
                                             <!-- Footer Section -->
                                             <tr>
                                                 <td align="center" style="padding: 0px 30px 10px;">
-                                                    <table
-                                                        width="100%"
-                                                        border="0"
-                                                        cellpadding="0"
-                                                        cellspacing="0"
-                                                        role="presentation"
-                                                        style="border-radius: 10px;">
+                                                    <table width="100%" border="0" cellpadding="0" cellspacing="0"
+                                                        role="presentation" style="border-radius: 10px;">
                                                         <tr>
                                                             <td align="center" style="padding: 25px 20px;">
                                                                 <h3 style="
@@ -308,61 +290,56 @@
                                                                 ">Follow Us</h3>
 
                                                                 <!-- Social Media Icons -->
-                                                                <table
-                                                                    border="0"
-                                                                    cellpadding="0"
-                                                                    cellspacing="0"
-                                                                    role="presentation"
-                                                                    align="center"
+                                                                <table border="0" cellpadding="0" cellspacing="0"
+                                                                    role="presentation" align="center"
                                                                     style="margin: 0 auto; text-align: center;">
                                                                     <tr>
                                                                         <td align="center" style="padding: 0 10px;">
-                                                                            <a href="https://www.facebook.com/alifnetgroup" target="_blank" style="text-decoration: none;">
-                                                                                <img
-                                                                                    src="http://materi.aliftama.id/images/icon/Icon_FB_Alif.png"
-                                                                                    width="30"
-                                                                                    height="30"
+                                                                            <a href="https://www.facebook.com/alifnetgroup"
+                                                                                target="_blank"
+                                                                                style="text-decoration: none;">
+                                                                                <img src="http://materi.aliftama.id/images/icon/Icon_FB_Alif.png"
+                                                                                    width="30" height="30"
                                                                                     alt="Facebook"
                                                                                     style="display: block; border: 0;" />
                                                                             </a>
                                                                         </td>
                                                                         <td align="center" style="padding: 0 10px;">
-                                                                            <a href="https://www.instagram.com/alifnetgroup/" target="_blank" style="text-decoration: none;">
-                                                                                <img
-                                                                                    src="http://materi.aliftama.id/images/icon/Icon_IG_Alif.png"
-                                                                                    width="30"
-                                                                                    height="30"
+                                                                            <a href="https://www.instagram.com/alifnetgroup/"
+                                                                                target="_blank"
+                                                                                style="text-decoration: none;">
+                                                                                <img src="http://materi.aliftama.id/images/icon/Icon_IG_Alif.png"
+                                                                                    width="30" height="30"
                                                                                     alt="Instagram"
                                                                                     style="display: block; border: 0;" />
                                                                             </a>
                                                                         </td>
                                                                         <td align="center" style="padding: 0 10px;">
-                                                                            <a href="https://t.me/onymartin" target="_blank" style="text-decoration: none;">
-                                                                                <img
-                                                                                    src="http://materi.aliftama.id/images/icon/Icon_Telegram_Alif.png"
-                                                                                    width="30"
-                                                                                    height="30"
+                                                                            <a href="https://t.me/onymartin"
+                                                                                target="_blank"
+                                                                                style="text-decoration: none;">
+                                                                                <img src="http://materi.aliftama.id/images/icon/Icon_Telegram_Alif.png"
+                                                                                    width="30" height="30"
                                                                                     alt="Telegram"
                                                                                     style="display: block; border: 0;" />
                                                                             </a>
                                                                         </td>
                                                                         <td align="center" style="padding: 0 10px;">
-                                                                            <a href="https://www.linkedin.com/company/alifnetgroup/" target="_blank" style="text-decoration: none;">
-                                                                                <img
-                                                                                    src="http://materi.aliftama.id/images/icon/Icon_Linkedin_Alif.png"
-                                                                                    width="30"
-                                                                                    height="30"
+                                                                            <a href="https://www.linkedin.com/company/alifnetgroup/"
+                                                                                target="_blank"
+                                                                                style="text-decoration: none;">
+                                                                                <img src="http://materi.aliftama.id/images/icon/Icon_Linkedin_Alif.png"
+                                                                                    width="30" height="30"
                                                                                     alt="LinkedIn"
                                                                                     style="display: block; border: 0;" />
                                                                             </a>
                                                                         </td>
                                                                         <td align="center" style="padding: 0 10px;">
-                                                                            <a href="https://www.threads.com/@alifnetgroup" target="_blank" style="text-decoration: none;">
-                                                                                <img
-                                                                                    src="http://materi.aliftama.id/images/icon/Icon_Thread_Alif.png"
-                                                                                    width="30"
-                                                                                    height="30"
-                                                                                    alt="Threads"
+                                                                            <a href="https://www.threads.com/@alifnetgroup"
+                                                                                target="_blank"
+                                                                                style="text-decoration: none;">
+                                                                                <img src="http://materi.aliftama.id/images/icon/Icon_Thread_Alif.png"
+                                                                                    width="30" height="30" alt="Threads"
                                                                                     style="display: block; border: 0;" />
                                                                             </a>
                                                                         </td>
@@ -377,13 +354,8 @@
                                             <!-- Call Center Card -->
                                             <tr>
                                                 <td align="center" style="padding: 0 30px 10px;" width="100%">
-                                                    <table
-                                                        width="100%"
-                                                        border="0"
-                                                        cellpadding="0"
-                                                        cellspacing="0"
-                                                        role="presentation"
-                                                        style="width: 100%; border-radius: 10px;">
+                                                    <table width="100%" border="0" cellpadding="0" cellspacing="0"
+                                                        role="presentation" style="width: 100%; border-radius: 10px;">
                                                         <tr>
                                                             <td align="center" style="padding: 0px 20px;" width="100%">
                                                                 <h3 style="
@@ -428,9 +400,9 @@
                                                     color: #666666;
                                                 ">
                                                     <p style="margin: 0 0 8px 0;">
-                                                        Jika Anda tidak ingin menerima informasi & promosi dari AlifNET, silahkan klik
-                                                        <a
-                                                            href="https://materi.aliftama.id/unsubscribe/{{ $recipient->id }}"
+                                                        Jika Anda tidak ingin menerima informasi & promosi dari AlifNET,
+                                                        silahkan klik
+                                                        <a href="https://materi.aliftama.id/unsubscribe/{{ $recipient->id }}"
                                                             target="_blank"
                                                             style="color: #004aad; text-decoration: none;">
                                                             berhenti berlangganan
