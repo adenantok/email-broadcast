@@ -205,7 +205,16 @@
                                                                     text-decoration: none;
                                                                     padding: 12px 30px;
                                                                     border-radius: 8px;
-                                                                ">Call Free</a>
+                                                                "><img
+                                                                        src="http://materi.aliftama.id/images/icon/Icon_Telephone_Hitam.png"
+                                                                        alt="Call Icon"
+                                                                        width="20"
+                                                                        height="20"
+                                                                        style="
+                                                                    display: inline-block;
+                                                                    vertical-align: middle;
+                                                                    border: 0;
+                                                                " />Call Free</a>
                                                             </td>
                                                             <!-- Chat Us Button -->
                                                             <td style="padding: 0 10px;">
@@ -219,7 +228,17 @@
                                                                     text-decoration: none;
                                                                     padding: 12px 30px;
                                                                     border-radius: 8px;
-                                                                ">Chat Us</a>
+                                                                ">
+                                                                    <img
+                                                                        src="http://materi.aliftama.id/images/icon/Icon_Message_Hitam.png"
+                                                                        alt="Chat Icon"
+                                                                        width="20"
+                                                                        height="20"
+                                                                        style="
+                                                                    display: inline-block;
+                                                                    vertical-align: middle;
+                                                                    border: 0;
+                                                                " />Chat Us</a>
                                                             </td>
                                                         </tr>
                                                     </table>
