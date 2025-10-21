@@ -136,6 +136,8 @@
                                                     </a>
                                                 </td>
                                             </tr>
+
+                                            <!-- Intro Section -->
                                             <tr>
                                                 <td
                                                     style="
@@ -1309,13 +1311,15 @@
                                                     </table>
                                                 </td>
                                             </tr>
+
+                                            <!-- CTA Buttons -->
                                             <tr>
                                                 <td
                                                     style="padding: 10px"
                                                     align="center">
                                                     <!-- Call Us Button -->
                                                     <a
-                                                        href="https://s.id/CallAlifNET "
+                                                        href="https://s.id/CallAlifNET"
                                                         target="_blank"
                                                         style="
                                                                 display: inline-flex;
@@ -1394,6 +1398,7 @@
                                                     </a>
                                                 </td>
                                             </tr>
+
                                             <!-- Footer Section -->
                                             <tr>
                                                 <td
@@ -1676,10 +1681,7 @@
                                                                 margin: 0 0 8px
                                                                     0;
                                                             ">
-                                                        Jika Anda tidak
-                                                        ingin menerima email
-                                                        seperti ini lagi,
-                                                        silakan Klik
+                                                        Jika Anda tidak ingin menerima email seperti ini lagi, silakan Klik
                                                         <a
                                                             href="https://materi.aliftama.id/unsubscribe/{{ $recipient->id }}"
                                                             target="_blank"
