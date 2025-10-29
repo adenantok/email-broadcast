@@ -35,8 +35,16 @@ Route::middleware('checklogin')->group(function () {
     // Route baru untuk template
     Route::post('/broadcast/set-template', [BroadcastController::class, 'setTemplate'])->name('broadcast.set.template');
 
+    // Recipient Management (Manual)
+    Route::post('/broadcast/recipients', [BroadcastController::class, 'addRecipient'])->name('broadcast.recipients.add');
     Route::delete('/broadcast/recipients/{id}', [BroadcastController::class, 'deleteRecipient'])->name('broadcast.delete');
     Route::put('/broadcast/recipients/{id}', [BroadcastController::class, 'updateRecipient'])->name('broadcast.update');
+
+    // Group Management
+    Route::post('/broadcast/groups', [BroadcastController::class, 'addGroup'])->name('broadcast.groups.add');
+    Route::put('/broadcast/groups/{id}', [BroadcastController::class, 'updateGroup'])->name('broadcast.groups.update');
+    Route::delete('/broadcast/groups/{id}', [BroadcastController::class, 'deleteGroup'])->name('broadcast.groups.delete');
+
 });
 
 Route::get('/broadcast/preview/{id}', [BroadcastController::class, 'preview'])->name('broadcast.preview');

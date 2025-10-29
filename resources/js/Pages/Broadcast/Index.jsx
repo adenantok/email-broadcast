@@ -2,12 +2,16 @@ import React, { useState, useEffect, useRef } from "react";
 import { router, usePage, useForm } from "@inertiajs/react";
 import AppLayout from "../../Layouts/AppLayout";
 import EditRecipientModal from "./EditRecipientModal";
+import AddRecipientModal from "./AddRecipientModal";
+import CreateGroupModal from "./CreateGroupModal";
+import EditGroupModal from "./EditGroupModal";
 
 export default function BroadcastIndex() {
-    const { recipients, templates, filters, flash, component } =
+    const { recipients, templates, groups, filters, flash, component } =
         usePage().props;
     const [search, setSearch] = useState(filters.search || "");
     const [selectedTemplate, setSelectedTemplate] = useState("");
+    const [selectedGroup, setSelectedGroup] = useState(filters.group || "");
     const [subjectPreview, setSubjectPreview] = useState("-");
     const [showProgressModal, setShowProgressModal] = useState(false);
     const [progress, setProgress] = useState({
@@ -29,15 +33,17 @@ export default function BroadcastIndex() {
 
     const [showEditModal, setShowEditModal] = useState(false);
     const [editingRecipient, setEditingRecipient] = useState(null);
+    const [showAddModal, setShowAddModal] = useState(false);
+    const [showCreateGroupModal, setShowCreateGroupModal] = useState(false);
+    const [showEditGroupModal, setShowEditGroupModal] = useState(false);
+    const [editingGroup, setEditingGroup] = useState(null);
 
     // Auto-search (debounced) - ONLY on broadcast page
     useEffect(() => {
-        // ✅ Jangan jalankan auto-search jika bukan di halaman broadcast
         if (!isOnBroadcastPage) {
             return;
         }
 
-        // ✅ Jangan update URL jika search kosong DAN belum pernah search
         const currentSearch = new URLSearchParams(window.location.search).get(
             "search"
         );
@@ -48,12 +54,35 @@ export default function BroadcastIndex() {
         const timeout = setTimeout(() => {
             router.get(
                 "/broadcast",
-                { search },
-                { preserveState: true, replace: true }
+                { search, group: selectedGroup },
+                { preserveState: true, replace: true, preserveScroll: true }
             );
         }, 400);
         return () => clearTimeout(timeout);
     }, [search, isOnBroadcastPage]);
+
+    // Track previous group to prevent unnecessary reloads
+    const prevGroupRef = useRef(selectedGroup);
+
+    // Handle group change - only when actually changed
+    useEffect(() => {
+        if (!isOnBroadcastPage) {
+            return;
+        }
+
+        // Skip if group hasn't actually changed
+        if (prevGroupRef.current === selectedGroup) {
+            return;
+        }
+
+        prevGroupRef.current = selectedGroup;
+
+        router.get(
+            "/broadcast",
+            { search, group: selectedGroup },
+            { preserveState: true, replace: true, preserveScroll: true }
+        );
+    }, [selectedGroup, isOnBroadcastPage]);
 
     // Auto scroll logs
     useEffect(() => {
@@ -69,7 +98,6 @@ export default function BroadcastIndex() {
             if (eventSourceRef.current) {
                 eventSourceRef.current.close();
             }
-            // Reset modal state when leaving page
             setShowProgressModal(false);
         };
     }, []);
@@ -83,7 +111,6 @@ export default function BroadcastIndex() {
         const subject = selectedOption?.getAttribute("data-subject") || "-";
         setSubjectPreview(subject);
 
-        // Simpan template_id ke session via POST
         if (templateId) {
             fetch("/broadcast/set-template", {
                 method: "POST",
@@ -98,7 +125,6 @@ export default function BroadcastIndex() {
         }
     };
 
-    // Tambahkan function untuk handle edit
     const handleEdit = (recipient) => {
         setEditingRecipient(recipient);
         setShowEditModal(true);
@@ -112,14 +138,35 @@ export default function BroadcastIndex() {
         }
     };
 
-    // Handle preview
+    const handleDeleteGroup = (id, name) => {
+        if (
+            confirm(
+                `Hapus grup "${name}"?\n\nPeringatan: Penerima di grup ini tidak akan dihapus, hanya grup-nya saja.`
+            )
+        ) {
+            router.delete(`/broadcast/groups/${id}`, {
+                preserveScroll: true,
+                onSuccess: () => {
+                    // Reset selected group if the deleted group was selected
+                    if (selectedGroup == id) {
+                        setSelectedGroup("");
+                    }
+                },
+            });
+        }
+    };
+
+    const handleEditGroup = (group) => {
+        setEditingGroup(group);
+        setShowEditGroupModal(true);
+    };
+
     const handlePreview = () => {
         if (selectedTemplate) {
             window.open(`/broadcast/preview/${selectedTemplate}`, "_blank");
         }
     };
 
-    // Handle file upload
     const handleFileSubmit = (e) => {
         e.preventDefault();
 
@@ -128,18 +175,23 @@ export default function BroadcastIndex() {
             return;
         }
 
-        post("/broadcast/import", {
+        // Sertakan group_id yang sedang dipilih
+        const formData = new FormData();
+        formData.append("file", data.file);
+        if (selectedGroup) {
+            formData.append("group_id", selectedGroup);
+        }
+
+        router.post("/broadcast/import", formData, {
             preserveScroll: true,
             onSuccess: () => {
                 reset();
-                // Reset file input manually
                 const fileInput = document.querySelector('input[type="file"]');
                 if (fileInput) fileInput.value = "";
             },
         });
     };
 
-    // Add log helper
     const addLog = (message, className = "") => {
         setProgress((prev) => ({
             ...prev,
@@ -147,18 +199,25 @@ export default function BroadcastIndex() {
         }));
     };
 
-    // Handle send broadcast with SSE
+    // Cari function handleSendBroadcast di file BroadcastIndex.jsx Anda
+    // REPLACE function handleSendBroadcast yang lama dengan yang ini:
+
     const handleSendBroadcast = () => {
         if (!selectedTemplate) {
             alert("Pilih template email terlebih dahulu!");
             return;
         }
 
-        if (!confirm("Kirim broadcast ke semua penerima aktif?")) {
+        const confirmMessage = selectedGroup
+            ? `Kirim broadcast ke grup "${
+                  groups.find((g) => g.id == selectedGroup)?.name
+              }"?`
+            : "Kirim broadcast ke semua penerima aktif?";
+
+        if (!confirm(confirmMessage)) {
             return;
         }
 
-        // Reset dan show modal
         setShowProgressModal(true);
         setProgress({
             current: 0,
@@ -168,14 +227,20 @@ export default function BroadcastIndex() {
             isComplete: false,
         });
 
-        // Close existing EventSource if any
         if (eventSourceRef.current) {
             eventSourceRef.current.close();
         }
 
-        // Create new EventSource
-        const eventSource = new EventSource("/broadcast/send-stream");
+        // ✅ Pass parameter group jika ada
+        const eventSource = new EventSource(
+            `/broadcast/send-stream${
+                selectedGroup ? `?group=${selectedGroup}` : ""
+            }`
+        );
         eventSourceRef.current = eventSource;
+
+        // ✅ Flag untuk ignore error setelah complete
+        let isCompleted = false;
 
         eventSource.addEventListener("message", (e) => {
             const data = JSON.parse(e.data);
@@ -188,6 +253,9 @@ export default function BroadcastIndex() {
                 addLog(`📊 Total penerima: ${data.total}`, "text-info");
                 if (data.template) {
                     addLog(`📧 Template: ${data.template}`, "text-info");
+                }
+                if (data.group) {
+                    addLog(`👥 Grup: ${data.group}`, "text-info");
                 }
             } else if (data.type === "progress") {
                 const percentage = Math.round(
@@ -205,6 +273,9 @@ export default function BroadcastIndex() {
                     data.status === "success" ? "text-success" : "text-danger";
                 addLog(`${icon} ${data.email} - ${data.message}`, colorClass);
             } else if (data.type === "complete") {
+                // ✅ PENTING: Set flag SEBELUM update UI
+                isCompleted = true;
+
                 setProgress((prev) => ({
                     ...prev,
                     isComplete: true,
@@ -214,8 +285,13 @@ export default function BroadcastIndex() {
                     `\n🎉 Selesai! ${data.success} berhasil, ${data.failed} gagal dari ${data.total} email`,
                     "text-primary fw-bold"
                 );
-                eventSource.close();
+
+                // ✅ Delay sebentar sebelum close
+                setTimeout(() => {
+                    eventSource.close();
+                }, 200);
             } else if (data.type === "error") {
+                isCompleted = true;
                 addLog(`❌ Error: ${data.message}`, "text-danger fw-bold");
                 setProgress((prev) => ({
                     ...prev,
@@ -226,6 +302,12 @@ export default function BroadcastIndex() {
         });
 
         eventSource.addEventListener("error", (err) => {
+            // ✅ PENTING: Ignore error jika sudah complete
+            if (isCompleted) {
+                console.log("✅ Connection closed normally after completion");
+                return;
+            }
+
             console.error("SSE Error:", err);
             addLog("❌ Koneksi terputus atau error", "text-danger fw-bold");
             setProgress((prev) => ({
@@ -236,7 +318,6 @@ export default function BroadcastIndex() {
         });
     };
 
-    // Close modal and reload
     const handleCloseModal = () => {
         if (eventSourceRef.current) {
             eventSourceRef.current.close();
@@ -281,7 +362,7 @@ export default function BroadcastIndex() {
                     </div>
                 )}
 
-                {/* Progress Modal - Only show on broadcast page */}
+                {/* Progress Modal */}
                 {showProgressModal && isOnBroadcastPage && (
                     <div
                         className="modal fade show d-block"
@@ -297,7 +378,6 @@ export default function BroadcastIndex() {
                                     </h5>
                                 </div>
                                 <div className="modal-body">
-                                    {/* Progress Bar */}
                                     <div className="mb-3">
                                         <div
                                             className="progress"
@@ -325,7 +405,6 @@ export default function BroadcastIndex() {
                                         </p>
                                     </div>
 
-                                    {/* Log Container */}
                                     <div
                                         ref={logContainerRef}
                                         className="border rounded p-3 bg-light"
@@ -416,6 +495,106 @@ export default function BroadcastIndex() {
                     </div>
                 </div>
 
+                {/* Group Management Card */}
+                <div className="card mb-4 border-info">
+                    <div className="card-header bg-info text-white d-flex justify-content-between align-items-center">
+                        <span>
+                            <i className="bi bi-people-fill"></i> Manajemen Grup
+                            Penerima
+                        </span>
+                        <button
+                            type="button"
+                            className="btn btn-sm btn-light"
+                            onClick={() => setShowCreateGroupModal(true)}
+                        >
+                            <i className="bi bi-plus-circle"></i> Buat Grup Baru
+                        </button>
+                    </div>
+                    <div className="card-body">
+                        <div className="row">
+                            <div className="col-md-12">
+                                <label
+                                    htmlFor="groupSelect"
+                                    className="form-label fw-bold"
+                                >
+                                    Pilih Grup:
+                                </label>
+                                <select
+                                    className="form-select form-select-lg"
+                                    id="groupSelect"
+                                    value={selectedGroup}
+                                    onChange={(e) =>
+                                        setSelectedGroup(e.target.value)
+                                    }
+                                >
+                                    <option value="">
+                                        -- Semua Penerima --
+                                    </option>
+                                    {groups?.map((group) => (
+                                        <option key={group.id} value={group.id}>
+                                            {group.name} (
+                                            {group.recipients_count} penerima)
+                                        </option>
+                                    ))}
+                                </select>
+                                <small className="text-muted">
+                                    Filter penerima berdasarkan grup yang
+                                    dipilih
+                                </small>
+                            </div>
+                        </div>
+
+                        {selectedGroup && (
+                            <div className="alert alert-info mt-3 mb-0 d-flex justify-content-between align-items-center">
+                                <div>
+                                    <i className="bi bi-info-circle me-2"></i>
+                                    Menampilkan penerima dari grup:{" "}
+                                    <strong>
+                                        {
+                                            groups?.find(
+                                                (g) => g.id == selectedGroup
+                                            )?.name
+                                        }
+                                    </strong>
+                                </div>
+                                <div>
+                                    <button
+                                        type="button"
+                                        className="btn btn-sm btn-warning me-1"
+                                        onClick={() =>
+                                            handleEditGroup(
+                                                groups?.find(
+                                                    (g) => g.id == selectedGroup
+                                                )
+                                            )
+                                        }
+                                        title="Edit Grup"
+                                    >
+                                        <i className="bi bi-pencil-square"></i>{" "}
+                                        Edit
+                                    </button>
+                                    <button
+                                        type="button"
+                                        className="btn btn-sm btn-danger"
+                                        onClick={() => {
+                                            const group = groups?.find(
+                                                (g) => g.id == selectedGroup
+                                            );
+                                            handleDeleteGroup(
+                                                group.id,
+                                                group.name
+                                            );
+                                        }}
+                                        title="Hapus Grup"
+                                    >
+                                        <i className="bi bi-trash"></i> Hapus
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </div>
+
                 {/* Form Upload Excel */}
                 <div className="card mb-4">
                     <div className="card-header bg-primary text-white">
@@ -460,9 +639,19 @@ export default function BroadcastIndex() {
                 <div className="card mb-4 shadow-sm">
                     <div className="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
                         <span>📋 Daftar Penerima</span>
-                        <span className="badge bg-light text-dark">
-                            Total: {recipients.total}
-                        </span>
+                        <div className="d-flex align-items-center gap-2">
+                            <span className="badge bg-light text-dark">
+                                Total: {recipients.total}
+                            </span>
+                            <button
+                                type="button"
+                                className="btn btn-sm btn-success"
+                                onClick={() => setShowAddModal(true)}
+                            >
+                                <i className="bi bi-person-plus-fill"></i>{" "}
+                                Tambah Manual
+                            </button>
+                        </div>
                     </div>
                     <div className="card-body">
                         {/* Input Pencarian */}
@@ -485,6 +674,7 @@ export default function BroadcastIndex() {
                                         <th>Nama Perusahaan</th>
                                         <th>PIC</th>
                                         <th>Email</th>
+                                        <th>Grup</th>
                                         <th className="text-center">
                                             Subscribed
                                         </th>
@@ -511,6 +701,18 @@ export default function BroadcastIndex() {
                                                 <td>
                                                     <small>{r.email}</small>
                                                 </td>
+                                                <td>
+                                                    {r.group_name ? (
+                                                        <span className="badge bg-info">
+                                                            {r.group_name}
+                                                        </span>
+                                                    ) : (
+                                                        <span className="text-muted">
+                                                            -
+                                                        </span>
+                                                    )}
+                                                </td>
+
                                                 <td className="text-center">
                                                     {r.is_subscribed ? (
                                                         <span className="badge bg-success">
@@ -571,7 +773,7 @@ export default function BroadcastIndex() {
                                     ) : (
                                         <tr>
                                             <td
-                                                colSpan="8"
+                                                colSpan="11"
                                                 className="text-center text-muted py-4"
                                             >
                                                 <i
@@ -579,7 +781,9 @@ export default function BroadcastIndex() {
                                                     style={{ fontSize: "2rem" }}
                                                 ></i>
                                                 <p className="mb-0 mt-2">
-                                                    Belum ada data penerima.
+                                                    {selectedGroup
+                                                        ? "Belum ada penerima di grup ini."
+                                                        : "Belum ada data penerima."}
                                                 </p>
                                             </td>
                                         </tr>
@@ -643,20 +847,64 @@ export default function BroadcastIndex() {
                         disabled={!selectedTemplate}
                     >
                         <i className="bi bi-send-fill"></i> Kirim Broadcast
-                        Sekarang
+                        {selectedGroup && (
+                            <span>
+                                {" "}
+                                ke{" "}
+                                {
+                                    groups?.find((g) => g.id == selectedGroup)
+                                        ?.name
+                                }
+                            </span>
+                        )}
                     </button>
                     <p className="text-muted mt-2">
-                        <small>* Pilih template email terlebih dahulu</small>
+                        <small>
+                            * Pilih template email terlebih dahulu
+                            {selectedGroup && (
+                                <span>
+                                    {" "}
+                                    | Mengirim ke grup:{" "}
+                                    {
+                                        groups?.find(
+                                            (g) => g.id == selectedGroup
+                                        )?.name
+                                    }
+                                </span>
+                            )}
+                        </small>
                     </p>
                 </div>
             </div>
-            {/* Edit Modal */}
+
+            {/* Modals */}
             <EditRecipientModal
                 recipient={editingRecipient}
                 show={showEditModal}
                 onClose={() => {
                     setShowEditModal(false);
                     setEditingRecipient(null);
+                }}
+                groups={groups}
+            />
+
+            <AddRecipientModal
+                show={showAddModal}
+                onClose={() => setShowAddModal(false)}
+                groups={groups}
+            />
+
+            <CreateGroupModal
+                show={showCreateGroupModal}
+                onClose={() => setShowCreateGroupModal(false)}
+            />
+
+            <EditGroupModal
+                group={editingGroup}
+                show={showEditGroupModal}
+                onClose={() => {
+                    setShowEditGroupModal(false);
+                    setEditingGroup(null);
                 }}
             />
         </AppLayout>

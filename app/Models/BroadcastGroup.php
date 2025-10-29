@@ -6,24 +6,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class BroadcastRecipient extends Model
+class BroadcastGroup extends Model
 {
     use HasFactory;
 
-    protected $table = 'broadcast_recipients';
+    protected $table = 'broadcast_groups';
     public $incrementing = false;
     protected $keyType = 'string';
 
     protected $fillable = [
         'id',
-        'nama_perusahaan',
-        'pic',
-        'email',
-        'is_subscribed',
-        'status',
-        'unsubscribed_at',
-        'last_sent_at',
-        'sent_count',
+        'name',
+        'description',
     ];
 
     protected static function booted()
@@ -36,21 +30,23 @@ class BroadcastRecipient extends Model
     }
 
     /**
-     * Groups that this recipient belongs to (Many-to-Many)
+     * Recipients in this group (Many-to-Many)
      */
-    public function groups()
+    public function recipients()
     {
         return $this->belongsToMany(
-            BroadcastGroup::class,
+            BroadcastRecipient::class,
             'broadcast_group_recipient',
-            'recipient_id',
-            'group_id'
+            'group_id',
+            'recipient_id'
         )->withTimestamps();
     }
 
-    // Relasi ke log unsubscribe
-    public function unsubscribeLogs()
+    /**
+     * Get count of recipients
+     */
+    public function getRecipientsCountAttribute()
     {
-        return $this->hasMany(BroadcastUnsubscribeLog::class, 'recipient_id');
+        return $this->recipients()->count();
     }
 }

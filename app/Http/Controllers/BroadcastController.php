@@ -11,13 +11,44 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 use Illuminate\Support\Str;
 use App\Models\EmailTemplate; // Tambahkan ini
 use Illuminate\Support\Facades\Schema;
+use App\Models\BroadcastGroup;
+use Illuminate\Support\Facades\Validator;
+use App\Models\BroadcastRecipient;
+use Illuminate\Support\Facades\Log;
 
 class BroadcastController extends Controller
 {
     public function index(Request $request)
     {
-        $query = DB::table('broadcast_recipients');
+        // Subquery untuk last_sent_at dan sent_count
+        $logsSub = DB::table('broadcast_logs')
+            ->select(
+                'recipient_id',
+                DB::raw('MAX(sent_at) as last_sent_at'),
+                DB::raw('COUNT(CASE WHEN status = "success" THEN 1 END) as sent_count')
+            )
+            ->groupBy('recipient_id');
 
+        $query = DB::table('broadcast_recipients')
+            ->select(
+                'broadcast_recipients.*',
+                'broadcast_groups.id as group_id',
+                'broadcast_groups.name as group_name',
+                'logs.last_sent_at',
+                'logs.sent_count'
+            )
+            ->leftJoin('broadcast_group_recipient', 'broadcast_recipients.id', '=', 'broadcast_group_recipient.recipient_id')
+            ->leftJoin('broadcast_groups', 'broadcast_group_recipient.group_id', '=', 'broadcast_groups.id')
+            ->leftJoinSub($logsSub, 'logs', function ($join) {
+                $join->on('broadcast_recipients.id', '=', 'logs.recipient_id');
+            });
+
+        // 🔍 Filter berdasarkan grup
+        if ($groupId = $request->get('group')) {
+            $query->where('broadcast_group_recipient.group_id', $groupId);
+        }
+
+        // 🔍 Filter pencarian
         if ($search = $request->get('search')) {
             $query->where(function ($q) use ($search) {
                 $q->where('nama_perusahaan', 'like', "%$search%")
@@ -27,19 +58,25 @@ class BroadcastController extends Controller
         }
 
         $recipients = $query->orderBy('nama_perusahaan', 'asc')
-            ->paginate(10)->appends($request->only('search'));
+            ->paginate(10)
+            ->appends($request->only(['search', 'group']));
 
+        // ✅ Template email aktif
         $templates = Schema::hasTable('email_templates')
             ? EmailTemplate::where('is_active', true)->get()
             : [];
 
+        // ✅ Data grup
+        $groups = BroadcastGroup::withCount('recipients')->orderBy('name')->get();
+
         return Inertia::render('Broadcast/Index', [
             'recipients' => $recipients,
             'templates' => $templates,
+            'groups' => $groups,
             'filters' => [
                 'search' => $request->get('search', ''),
+                'group' => $request->get('group', ''),
             ],
-            // ✅ TAMBAHAN: Flash message
             'flash' => [
                 'success' => session('success'),
                 'error' => session('error'),
@@ -47,14 +84,37 @@ class BroadcastController extends Controller
         ]);
     }
 
+    /**
+     * Batch update status recipients
+     */
+    private function batchUpdateRecipients(array $ids, string $status)
+    {
+        if (empty($ids)) {
+            return;
+        }
+
+        try {
+            DB::table('broadcast_recipients')
+                ->whereIn('id', $ids)
+                ->update([
+                    'status' => $status,
+                    'updated_at' => now()
+                ]);
+        } catch (\Exception $e) {
+            Log::error("Error batch update recipients: " . $e->getMessage());
+        }
+    }
+
     public function importExcel(Request $request)
     {
         $request->validate([
-            'file' => 'required|mimes:xlsx,xls'
+            'file' => 'required|mimes:xlsx,xls',
         ]);
 
+        $groupId = $request->input('group_id'); // ambil group_id dari request
+
         $filePath = $request->file('file')->getRealPath();
-        $spreadsheet = IOFactory::load($filePath);
+        $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($filePath);
         $sheet = $spreadsheet->getActiveSheet();
         $rows = $sheet->toArray();
 
@@ -80,7 +140,7 @@ class BroadcastController extends Controller
             $existing = DB::table('broadcast_recipients')->where('email', $email)->first();
 
             if ($existing) {
-                // Update data lama (tanpa ubah id)
+                // Update data lama
                 DB::table('broadcast_recipients')
                     ->where('email', $email)
                     ->update([
@@ -89,10 +149,14 @@ class BroadcastController extends Controller
                         'is_subscribed' => true,
                         'updated_at' => now(),
                     ]);
+
+                $recipientId = $existing->id;
             } else {
                 // Insert data baru
+                $recipientId = Str::uuid()->toString();
+
                 DB::table('broadcast_recipients')->insert([
-                    'id' => Str::uuid()->toString(),
+                    'id' => $recipientId,
                     'nama_perusahaan' => $namaPerusahaan,
                     'pic' => $pic,
                     'email' => $email,
@@ -103,10 +167,24 @@ class BroadcastController extends Controller
                 ]);
             }
 
+            // Jika group dipilih → tautkan ke tabel pivot
+            if ($groupId) {
+                DB::table('broadcast_group_recipient')->updateOrInsert(
+                    [
+                        'group_id' => $groupId,
+                        'recipient_id' => $recipientId,
+                    ],
+                    [
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]
+                );
+            }
+
             $count++;
         }
 
-        return back()->with('success', "$count penerima berhasil diimpor.");
+        return back()->with('success', "$count penerima berhasil diimpor" . ($groupId ? " dan ditambahkan ke grup." : "."));
     }
 
     public function send(Request $request)
@@ -116,15 +194,33 @@ class BroadcastController extends Controller
 
     public function sendStream(Request $request)
     {
-        return response()->stream(function () {
-            if (ob_get_level()) ob_end_clean();
+        return response()->stream(function () use ($request) {
+            if (ob_get_level())
+                ob_end_clean();
 
             set_time_limit(3600);
             ini_set('max_execution_time', 3600);
 
-            $recipients = DB::table('broadcast_recipients')
-                ->where('is_subscribed', true)
-                ->get();
+            // ✅ Ambil group_id dari query parameter (ignore timestamp param)
+            $groupId = $request->query('group');
+            $groupName = null;
+
+            // ✅ Query recipients dengan filter group
+            $query = DB::table('broadcast_recipients')
+                ->where('broadcast_recipients.is_subscribed', true);
+
+            // ✅ JOIN jika ada group yang dipilih
+            if ($groupId) {
+                $query->join('broadcast_group_recipient', 'broadcast_recipients.id', '=', 'broadcast_group_recipient.recipient_id')
+                    ->where('broadcast_group_recipient.group_id', $groupId)
+                    ->select('broadcast_recipients.*'); // Pastikan hanya select kolom dari broadcast_recipients
+
+                // Ambil nama group untuk ditampilkan di log
+                $group = DB::table('broadcast_groups')->where('id', $groupId)->first();
+                $groupName = $group ? $group->name : null;
+            }
+
+            $recipients = $query->get();
 
             $total = $recipients->count();
             $success = 0;
@@ -141,17 +237,23 @@ class BroadcastController extends Controller
                 $template = \App\Models\EmailTemplate::find($templateId);
             }
 
+            // ✅ Kirim info awal termasuk nama group
             echo "data: " . json_encode([
                 'type' => 'init',
                 'total' => $total,
-                'template' => $template ? $template->name : null
+                'template' => $template ? $template->name : null,
+                'group' => $groupName // Tambahkan info group
             ]) . "\n\n";
             flush();
 
             if ($total === 0) {
+                $message = $groupId
+                    ? "Tidak ada penerima aktif di grup \"$groupName\""
+                    : 'Tidak ada penerima yang aktif';
+
                 echo "data: " . json_encode([
                     'type' => 'error',
-                    'message' => 'Tidak ada penerima yang aktif'
+                    'message' => $message
                 ]) . "\n\n";
                 flush();
                 return;
@@ -161,12 +263,12 @@ class BroadcastController extends Controller
 
             try {
                 $mail->isSMTP();
-                $mail->Host       = 'mail.aliftama.id';
-                $mail->SMTPAuth   = true;
-                $mail->Username   = env('MAIL_BROADCAST_USER');
-                $mail->Password   = env('MAIL_BROADCAST_PASS');
+                $mail->Host = 'mail.aliftama.id';
+                $mail->SMTPAuth = true;
+                $mail->Username = env('MAIL_BROADCAST_USER');
+                $mail->Password = env('MAIL_BROADCAST_PASS');
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-                $mail->Port       = 587;
+                $mail->Port = 587;
                 $mail->SMTPKeepAlive = true;
 
                 $mail->Timeout = 30;
@@ -249,6 +351,12 @@ class BroadcastController extends Controller
                         }
 
                         continue;
+                    }
+
+                    // ✅ Kirim keepalive setiap 10 email untuk prevent timeout
+                    if (($index + 1) % 10 === 0) {
+                        echo ": keepalive " . date('H:i:s') . "\n\n";
+                        flush();
                     }
 
                     try {
@@ -346,19 +454,53 @@ class BroadcastController extends Controller
                     $this->batchUpdateRecipients($failedIds, 'failed');
                 }
 
+                // ✅ LOG: Debug untuk memastikan sampai sini
+                Log::info("Broadcast selesai. Success: $success, Failed: $failed");
+
+                // ✅ CRITICAL: Multiple flush untuk memastikan data terkirim
                 echo "data: " . json_encode([
                     'type' => 'complete',
                     'success' => $success,
                     'failed' => $failed,
                     'total' => $total
                 ]) . "\n\n";
+
+                Log::info("Event complete dikirim");
+
+                if (ob_get_level() > 0) {
+                    ob_flush();
+                }
                 flush();
+
+                Log::info("Flush pertama selesai");
+
+                // ✅ Kirim heartbeat untuk memaksa buffer flush
+                echo ": heartbeat\n\n";
+
+                if (ob_get_level() > 0) {
+                    ob_flush();
+                }
+                flush();
+
+                Log::info("Heartbeat dikirim");
+
+                // ✅ Delay lebih lama untuk koneksi cepat
+                usleep(1000000); // 1 detik
+
+                Log::info("Selesai usleep, stream akan berakhir");
             } catch (Exception $e) {
                 echo "data: " . json_encode([
                     'type' => 'error',
                     'message' => 'Gagal koneksi SMTP: ' . $e->getMessage()
                 ]) . "\n\n";
+
+                if (ob_get_level() > 0) {
+                    ob_flush();
+                }
                 flush();
+
+                // ✅ Delay untuk event error juga
+                usleep(1000000); // 1 detik
             }
         }, 200, [
             'Cache-Control' => 'no-cache',
@@ -368,46 +510,7 @@ class BroadcastController extends Controller
         ]);
     }
 
-    private function batchUpdateRecipients(array $recipientIds, string $status)
-    {
-        if (empty($recipientIds)) {
-            return;
-        }
 
-        try {
-            $updateData = [
-                'status' => $status,
-                'updated_at' => now(),
-            ];
-
-            // Tambahkan last_sent_at dan increment sent_count hanya untuk status 'sent'
-            if ($status === 'sent') {
-                $updateData['last_sent_at'] = now();
-
-                // ✅ Bulk update dengan 1 query saja
-                DB::table('broadcast_recipients')
-                    ->whereIn('id', $recipientIds)
-                    ->update([
-                        'status' => $status,
-                        'last_sent_at' => now(),
-                        'sent_count' => DB::raw('sent_count + 1'),
-                        'updated_at' => now(),
-                    ]);
-            } else {
-                // Untuk status failed/invalid, update tanpa increment
-                DB::table('broadcast_recipients')
-                    ->whereIn('id', $recipientIds)
-                    ->update($updateData);
-            }
-
-            Logger()->info("Batch updated {count} recipients with status: {status}", [
-                'count' => count($recipientIds),
-                'status' => $status
-            ]);
-        } catch (\Exception $e) {
-            Logger()->error('Batch update recipients failed: ' . $e->getMessage());
-        }
-    }
 
     private function logSendResult($recipientId, $status, $message = null)
     {
@@ -508,5 +611,110 @@ class BroadcastController extends Controller
         }
 
         return back()->with('error', 'Data tidak ditemukan');
+    }
+
+    // Store new group
+    public function addGroup(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255|unique:broadcast_groups,name',
+            'description' => 'nullable|string',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->with('error', 'Gagal membuat grup: ' . $validator->errors()->first());
+        }
+
+        try {
+            $group = BroadcastGroup::create([
+                'name' => $request->name,
+                'description' => $request->description,
+            ]);
+
+            return redirect()->back()->with('success', "Grup '{$group->name}' berhasil dibuat!");
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Gagal membuat grup: ' . $e->getMessage());
+        }
+    }
+
+    // Update group
+    public function updateGroup(Request $request, $id)
+    {
+        $group = BroadcastGroup::findOrFail($id);
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255|unique:broadcast_groups,name,' . $id,
+            'description' => 'nullable|string',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->with('error', 'Gagal update grup: ' . $validator->errors()->first());
+        }
+
+        try {
+            $group->update([
+                'name' => $request->name,
+                'description' => $request->description,
+            ]);
+
+            return redirect()->back()->with('success', "Grup '{$group->name}' berhasil diupdate!");
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Gagal update grup: ' . $e->getMessage());
+        }
+    }
+
+    // Delete group
+    public function deleteGroup($id)
+    {
+        try {
+            $group = BroadcastGroup::findOrFail($id);
+            $name = $group->name;
+
+            // Pivot table will auto-delete due to cascade
+            $group->delete();
+
+            return redirect()->back()->with('success', "Grup '{$name}' berhasil dihapus!");
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Gagal menghapus grup: ' . $e->getMessage());
+        }
+    }
+
+    // Store new recipient manually
+    public function addRecipient(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'nama_perusahaan' => 'required|string|max:255',
+            'pic' => 'nullable|string|max:255',
+            'email' => 'required|email|unique:broadcast_recipients,email',
+            'group_id' => 'nullable|exists:broadcast_groups,id',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->with('error', 'Gagal menambah penerima: ' . $validator->errors()->first());
+        }
+
+        try {
+            $recipient = BroadcastRecipient::create([
+                'nama_perusahaan' => $request->nama_perusahaan,
+                'pic' => $request->pic,
+                'email' => $request->email,
+                'status' => 'active',
+            ]);
+
+            // Attach to group if specified
+            if ($request->group_id) {
+                $recipient->groups()->syncWithoutDetaching([$request->group_id]);
+            }
+
+            return redirect()->back()->with('success', "Penerima '{$recipient->email}' berhasil ditambahkan!");
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Gagal menambah penerima: ' . $e->getMessage());
+        }
     }
 }
