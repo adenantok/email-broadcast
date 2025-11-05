@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<html
-    xmlns:v="urn:schemas-microsoft-com:vml"
-    xmlns:o="urn:schemas-microsoft-com:office:office"
-    lang="id">
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="id">
 
 <head>
     <title>Produk dan Layanan AlifNET</title>
@@ -58,21 +55,14 @@
     </style>
 </head>
 
-<body
-    style="
+<body style="
             margin: 0;
             padding: 0;
             background-color: #f6f7fb;
             -webkit-text-size-adjust: none;
             text-size-adjust: none;
         ">
-    <table
-        width="100%"
-        border="0"
-        cellpadding="0"
-        cellspacing="0"
-        role="presentation"
-        style="
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="
                 mso-table-lspace: 0pt;
                 mso-table-rspace: 0pt;
                 background-color: #f6f7fb;
@@ -80,25 +70,13 @@
         <tbody>
             <tr>
                 <td>
-                    <table
-                        align="center"
-                        width="100%"
-                        border="0"
-                        cellpadding="0"
-                        cellspacing="0"
-                        role="presentation"
+                    <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation"
                         style="mso-table-lspace: 0pt; mso-table-rspace: 0pt">
                         <tbody>
                             <tr>
                                 <td>
-                                    <table
-                                        class="row-content"
-                                        align="center"
-                                        border="0"
-                                        cellpadding="0"
-                                        cellspacing="0"
-                                        role="presentation"
-                                        style="
+                                    <table class="row-content" align="center" border="0" cellpadding="0" cellspacing="0"
+                                        role="presentation" style="
                                                 mso-table-lspace: 0pt;
                                                 mso-table-rspace: 0pt;
                                                 background-color: #ffffff;
@@ -106,26 +84,19 @@
                                                 color: #000000;
                                                 width: 600px;
                                                 margin: 0 auto;
-                                            "
-                                        width="600">
+                                            " width="600">
                                         <tbody>
                                             <!-- Header Section -->
                                             <tr>
-                                                <td
-                                                    align="center"
-                                                    style="
+                                                <td align="center" style="
                                                             padding-bottom: 20px;
                                                             padding-top: 20px;
                                                             border-bottom: 1px
                                                                 solid #e6e8ee;
                                                         ">
-                                                    <a
-                                                        href="https://aliftama.id/"
-                                                        target="_blank">
-                                                        <img
-                                                            src="http://materi.aliftama.id/images/logo/Logo_AlifNET_Internet_Desa.png"
-                                                            alt="AlifNET"
-                                                            style="
+                                                    <a href="https://aliftama.id/" target="_blank">
+                                                        <img src="http://materi.aliftama.id/images/logo/Logo_AlifNET_Internet_Desa.png"
+                                                            alt="AlifNET" style="
                                                                     display: block;
                                                                     margin: 0
                                                                         auto;
@@ -139,8 +110,7 @@
 
                                             <!-- Intro Section -->
                                             <tr>
-                                                <td
-                                                    style="
+                                                <td style="
                                                             mso-table-lspace: 0pt;
                                                             mso-table-rspace: 0pt;
                                                             font-weight: 400;
@@ -149,8 +119,7 @@
                                                                 10px;
                                                             vertical-align: top;
                                                         ">
-                                                    <h1
-                                                        style="
+                                                    <h1 style="
                                                                 margin: 0 0 12px;
                                                                 color: #0f1736;
 
@@ -163,8 +132,7 @@
                                                         Internet Berkualitas
                                                         Untuk Nusantara
                                                     </h1>
-                                                    <p
-                                                        style="
+                                                    <p style="
                                                                 margin: 0;
 
                                                                 font-weight: 400;
@@ -183,9 +151,7 @@
                                                         maupun perusahaan.
                                                     </p>
                                                     <br />
-                                                    <p
-                                                        margin="0"
-                                                        style="
+                                                    <p margin="0" style="
                                                                 margin: 0;
 
                                                                 font-weight: 400;
@@ -201,19 +167,13 @@
 
                                             <!-- Card 1 - Dedicated Internet -->
                                             <tr>
-                                                <td
-                                                    style="
+                                                <td style="
                                                             mso-table-lspace: 0pt;
                                                             mso-table-rspace: 0pt;
                                                             padding: 0 30px 10px;
                                                         ">
-                                                    <table
-                                                        width="100%"
-                                                        border="0"
-                                                        cellpadding="0"
-                                                        cellspacing="0"
-                                                        role="presentation"
-                                                        style="
+                                                    <table width="100%" border="0" cellpadding="0" cellspacing="0"
+                                                        role="presentation" style="
                                                                 mso-table-lspace: 0pt;
                                                                 mso-table-rspace: 0pt;
                                                                 border: 1px
@@ -222,31 +182,20 @@
                                                                 border-radius: 10px;
                                                             ">
                                                         <tr>
-                                                            <td
-                                                                align="center"
-                                                                style="
+                                                            <td align="center" style="
                                                                         padding: 25px
                                                                             20px;
                                                                         text-align: center;
                                                                     ">
                                                                 <!-- Icon Circle -->
-                                                                <table
-                                                                    border="0"
-                                                                    cellpadding="0"
-                                                                    cellspacing="0"
-                                                                    role="presentation"
-                                                                    style="
+                                                                <table border="0" cellpadding="0" cellspacing="0"
+                                                                    role="presentation" style="
                                                                             margin: 0
                                                                                 auto
                                                                                 12px;
-                                                                        "
-                                                                    width="40"
-                                                                    height="40">
+                                                                        " width="40" height="40">
                                                                     <tr>
-                                                                        <td
-                                                                            align="center"
-                                                                            valign="middle"
-                                                                            style="
+                                                                        <td align="center" valign="middle" style="
                                                                                     background: linear-gradient(
                                                                                         135deg,
                                                                                         #1172b9,
@@ -256,12 +205,9 @@
                                                                                     width: 40px;
                                                                                     height: 40px;
                                                                                 ">
-                                                                            <img
-                                                                                src="http://materi.aliftama.id/images/icon/Icon_Internet.png"
-                                                                                alt="Dedicated Internet"
-                                                                                width="25"
-                                                                                height="25"
-                                                                                style="
+                                                                            <img src="http://materi.aliftama.id/images/icon/Icon_Internet.png"
+                                                                                alt="Dedicated Internet" width="25"
+                                                                                height="25" style="
                                                                                         display: block;
                                                                                         border: 0;
                                                                                         height: auto;
@@ -270,8 +216,7 @@
                                                                     </tr>
                                                                 </table>
 
-                                                                <h3
-                                                                    style="
+                                                                <h3 style="
                                                                             margin: 0
                                                                                 0
                                                                                 10px;
@@ -286,8 +231,7 @@
                                                                     Internet
                                                                 </h3>
 
-                                                                <p
-                                                                    style="
+                                                                <p style="
                                                                             margin: 0;
 
                                                                             font-weight: 400;
@@ -316,47 +260,30 @@
 
                                             <!-- Card 2 - Local Loop -->
                                             <tr>
-                                                <td
-                                                    style="
+                                                <td style="
                                                             padding: 0 30px 10px;
                                                         ">
-                                                    <table
-                                                        width="100%"
-                                                        border="0"
-                                                        cellpadding="0"
-                                                        cellspacing="0"
-                                                        role="presentation"
-                                                        style="
+                                                    <table width="100%" border="0" cellpadding="0" cellspacing="0"
+                                                        role="presentation" style="
                                                                 border: 1px
                                                                     solid
                                                                     #bfc0c5;
                                                                 border-radius: 10px;
                                                             ">
                                                         <tr>
-                                                            <td
-                                                                align="center"
-                                                                style="
+                                                            <td align="center" style="
                                                                         padding: 25px
                                                                             20px;
                                                                     ">
                                                                 <!-- Icon Circle -->
-                                                                <table
-                                                                    border="0"
-                                                                    cellpadding="0"
-                                                                    cellspacing="0"
-                                                                    role="presentation"
-                                                                    style="
+                                                                <table border="0" cellpadding="0" cellspacing="0"
+                                                                    role="presentation" style="
                                                                             margin: 0
                                                                                 auto
                                                                                 12px;
-                                                                        "
-                                                                    width="40"
-                                                                    height="40">
+                                                                        " width="40" height="40">
                                                                     <tr>
-                                                                        <td
-                                                                            align="center"
-                                                                            valign="middle"
-                                                                            style="
+                                                                        <td align="center" valign="middle" style="
                                                                                     background: linear-gradient(
                                                                                         135deg,
                                                                                         #1172b9,
@@ -366,11 +293,8 @@
                                                                                     width: 40px;
                                                                                     height: 40px;
                                                                                 ">
-                                                                            <img
-                                                                                src="http://materi.aliftama.id/images/icon/Icon_Link.png"
-                                                                                alt="Local Loop"
-                                                                                width="26"
-                                                                                height="26"
+                                                                            <img src="http://materi.aliftama.id/images/icon/Icon_Link.png"
+                                                                                alt="Local Loop" width="26" height="26"
                                                                                 style="
                                                                                         display: block;
                                                                                         border: 0;
@@ -378,8 +302,7 @@
                                                                         </td>
                                                                     </tr>
                                                                 </table>
-                                                                <h3
-                                                                    style="
+                                                                <h3 style="
                                                                             margin: 0
                                                                                 0
                                                                                 10px;
@@ -393,8 +316,7 @@
                                                                     Local
                                                                     Loop
                                                                 </h3>
-                                                                <p
-                                                                    style="
+                                                                <p style="
                                                                             margin: 0;
 
                                                                             line-height: 1.5;
@@ -426,19 +348,13 @@
 
                                             <!-- Card 3 - Residential & SOHO Internet -->
                                             <tr>
-                                                <td
-                                                    style="
+                                                <td style="
                                                             mso-table-lspace: 0pt;
                                                             mso-table-rspace: 0pt;
                                                             padding: 0 30px 10px;
                                                         ">
-                                                    <table
-                                                        width="100%"
-                                                        border="0"
-                                                        cellpadding="0"
-                                                        cellspacing="0"
-                                                        role="presentation"
-                                                        style="
+                                                    <table width="100%" border="0" cellpadding="0" cellspacing="0"
+                                                        role="presentation" style="
                                                                 mso-table-lspace: 0pt;
                                                                 mso-table-rspace: 0pt;
                                                                 border: 1px
@@ -447,31 +363,20 @@
                                                                 border-radius: 10px;
                                                             ">
                                                         <tr>
-                                                            <td
-                                                                align="center"
-                                                                style="
+                                                            <td align="center" style="
                                                                         padding: 25px
                                                                             20px;
                                                                         text-align: center;
                                                                     ">
                                                                 <!-- Icon Circle -->
-                                                                <table
-                                                                    border="0"
-                                                                    cellpadding="0"
-                                                                    cellspacing="0"
-                                                                    role="presentation"
-                                                                    style="
+                                                                <table border="0" cellpadding="0" cellspacing="0"
+                                                                    role="presentation" style="
                                                                             margin: 0
                                                                                 auto
                                                                                 12px;
-                                                                        "
-                                                                    width="40"
-                                                                    height="40">
+                                                                        " width="40" height="40">
                                                                     <tr>
-                                                                        <td
-                                                                            align="center"
-                                                                            valign="middle"
-                                                                            style="
+                                                                        <td align="center" valign="middle" style="
                                                                                     background: linear-gradient(
                                                                                         135deg,
                                                                                         #1172b9,
@@ -481,11 +386,8 @@
                                                                                     width: 40px;
                                                                                     height: 40px;
                                                                                 ">
-                                                                            <img
-                                                                                src="http://materi.aliftama.id/images/icon/Icon_Wifi.png"
-                                                                                alt="Internet"
-                                                                                width="26"
-                                                                                height="26"
+                                                                            <img src="http://materi.aliftama.id/images/icon/Icon_Wifi.png"
+                                                                                alt="Internet" width="26" height="26"
                                                                                 style="
                                                                                         display: block;
                                                                                         height: auto;
@@ -495,8 +397,7 @@
                                                                     </tr>
                                                                 </table>
 
-                                                                <h3
-                                                                    style="
+                                                                <h3 style="
                                                                             margin: 0
                                                                                 0
                                                                                 10px;
@@ -512,8 +413,7 @@
                                                                     Internet
                                                                 </h3>
 
-                                                                <p
-                                                                    style="
+                                                                <p style="
                                                                             margin: 0;
 
                                                                             font-weight: 400;
@@ -541,47 +441,30 @@
 
                                             <!-- Card 4 - Infrastruktur Komunikasi Data & Suara -->
                                             <tr>
-                                                <td
-                                                    style="
+                                                <td style="
                                                             padding: 0 30px 10px;
                                                         ">
-                                                    <table
-                                                        width="100%"
-                                                        border="0"
-                                                        cellpadding="0"
-                                                        cellspacing="0"
-                                                        role="presentation"
-                                                        style="
+                                                    <table width="100%" border="0" cellpadding="0" cellspacing="0"
+                                                        role="presentation" style="
                                                                 border: 1px
                                                                     solid
                                                                     #bfc0c5;
                                                                 border-radius: 10px;
                                                             ">
                                                         <tr>
-                                                            <td
-                                                                align="center"
-                                                                style="
+                                                            <td align="center" style="
                                                                         padding: 25px
                                                                             20px;
                                                                     ">
                                                                 <!-- Icon Circle -->
-                                                                <table
-                                                                    border="0"
-                                                                    cellpadding="0"
-                                                                    cellspacing="0"
-                                                                    role="presentation"
-                                                                    style="
+                                                                <table border="0" cellpadding="0" cellspacing="0"
+                                                                    role="presentation" style="
                                                                             margin: 0
                                                                                 auto
                                                                                 12px;
-                                                                        "
-                                                                    width="40"
-                                                                    height="40">
+                                                                        " width="40" height="40">
                                                                     <tr>
-                                                                        <td
-                                                                            align="center"
-                                                                            valign="middle"
-                                                                            style="
+                                                                        <td align="center" valign="middle" style="
                                                                                     background: linear-gradient(
                                                                                         135deg,
                                                                                         #1172b9,
@@ -591,11 +474,8 @@
                                                                                     width: 40px;
                                                                                     height: 40px;
                                                                                 ">
-                                                                            <img
-                                                                                src="http://materi.aliftama.id/images/icon/Icon_Distributed.png"
-                                                                                alt="Network"
-                                                                                width="34"
-                                                                                height="34"
+                                                                            <img src="http://materi.aliftama.id/images/icon/Icon_Distributed.png"
+                                                                                alt="Network" width="34" height="34"
                                                                                 style="
                                                                                         display: block;
                                                                                         border: 0;
@@ -603,8 +483,7 @@
                                                                         </td>
                                                                     </tr>
                                                                 </table>
-                                                                <h3
-                                                                    style="
+                                                                <h3 style="
                                                                             margin: 0
                                                                                 0
                                                                                 10px;
@@ -621,8 +500,7 @@
                                                                     Data &
                                                                     Suara
                                                                 </h3>
-                                                                <p
-                                                                    style="
+                                                                <p style="
                                                                             margin: 0;
 
                                                                             line-height: 1.5;
@@ -656,47 +534,30 @@
 
                                             <!-- Card 5 - Colocation & Data Center -->
                                             <tr>
-                                                <td
-                                                    style="
+                                                <td style="
                                                             padding: 0 30px 10px;
                                                         ">
-                                                    <table
-                                                        width="100%"
-                                                        border="0"
-                                                        cellpadding="0"
-                                                        cellspacing="0"
-                                                        role="presentation"
-                                                        style="
+                                                    <table width="100%" border="0" cellpadding="0" cellspacing="0"
+                                                        role="presentation" style="
                                                                 border: 1px
                                                                     solid
                                                                     #bfc0c5;
                                                                 border-radius: 10px;
                                                             ">
                                                         <tr>
-                                                            <td
-                                                                align="center"
-                                                                style="
+                                                            <td align="center" style="
                                                                         padding: 25px
                                                                             20px;
                                                                     ">
                                                                 <!-- Icon Circle -->
-                                                                <table
-                                                                    border="0"
-                                                                    cellpadding="0"
-                                                                    cellspacing="0"
-                                                                    role="presentation"
-                                                                    style="
+                                                                <table border="0" cellpadding="0" cellspacing="0"
+                                                                    role="presentation" style="
                                                                             margin: 0
                                                                                 auto
                                                                                 12px;
-                                                                        "
-                                                                    width="40"
-                                                                    height="40">
+                                                                        " width="40" height="40">
                                                                     <tr>
-                                                                        <td
-                                                                            align="center"
-                                                                            valign="middle"
-                                                                            style="
+                                                                        <td align="center" valign="middle" style="
                                                                                     background: linear-gradient(
                                                                                         135deg,
                                                                                         #1172b9,
@@ -706,11 +567,8 @@
                                                                                     width: 40px;
                                                                                     height: 40px;
                                                                                 ">
-                                                                            <img
-                                                                                src="http://materi.aliftama.id/images/icon/Icon_Server.png"
-                                                                                alt="Data Center"
-                                                                                width="26"
-                                                                                height="26"
+                                                                            <img src="http://materi.aliftama.id/images/icon/Icon_Server.png"
+                                                                                alt="Data Center" width="26" height="26"
                                                                                 style="
                                                                                         display: block;
                                                                                         border: 0;
@@ -718,8 +576,7 @@
                                                                         </td>
                                                                     </tr>
                                                                 </table>
-                                                                <h3
-                                                                    style="
+                                                                <h3 style="
                                                                             margin: 0
                                                                                 0
                                                                                 10px;
@@ -734,8 +591,7 @@
                                                                     & Data
                                                                     Center
                                                                 </h3>
-                                                                <p
-                                                                    style="
+                                                                <p style="
                                                                             margin: 0;
 
                                                                             line-height: 1.5;
@@ -766,47 +622,30 @@
 
                                             <!-- Card 6 - Managed Service -->
                                             <tr>
-                                                <td
-                                                    style="
+                                                <td style="
                                                             padding: 0 30px 10px;
                                                         ">
-                                                    <table
-                                                        width="100%"
-                                                        border="0"
-                                                        cellpadding="0"
-                                                        cellspacing="0"
-                                                        role="presentation"
-                                                        style="
+                                                    <table width="100%" border="0" cellpadding="0" cellspacing="0"
+                                                        role="presentation" style="
                                                                 border: 1px
                                                                     solid
                                                                     #bfc0c5;
                                                                 border-radius: 10px;
                                                             ">
                                                         <tr>
-                                                            <td
-                                                                align="center"
-                                                                style="
+                                                            <td align="center" style="
                                                                         padding: 25px
                                                                             20px;
                                                                     ">
                                                                 <!-- Icon Circle -->
-                                                                <table
-                                                                    border="0"
-                                                                    cellpadding="0"
-                                                                    cellspacing="0"
-                                                                    role="presentation"
-                                                                    style="
+                                                                <table border="0" cellpadding="0" cellspacing="0"
+                                                                    role="presentation" style="
                                                                             margin: 0
                                                                                 auto
                                                                                 12px;
-                                                                        "
-                                                                    width="40"
-                                                                    height="40">
+                                                                        " width="40" height="40">
                                                                     <tr>
-                                                                        <td
-                                                                            align="center"
-                                                                            valign="middle"
-                                                                            style="
+                                                                        <td align="center" valign="middle" style="
                                                                                     background: linear-gradient(
                                                                                         135deg,
                                                                                         #1172b9,
@@ -816,20 +655,16 @@
                                                                                     width: 40px;
                                                                                     height: 40px;
                                                                                 ">
-                                                                            <img
-                                                                                src="http://materi.aliftama.id/images/icon/Icon_Services.png"
-                                                                                alt="Managed Service"
-                                                                                width="28"
-                                                                                height="28"
-                                                                                style="
+                                                                            <img src="http://materi.aliftama.id/images/icon/Icon_Services.png"
+                                                                                alt="Managed Service" width="28"
+                                                                                height="28" style="
                                                                                         display: block;
                                                                                         border: 0;
                                                                                     " />
                                                                         </td>
                                                                     </tr>
                                                                 </table>
-                                                                <h3
-                                                                    style="
+                                                                <h3 style="
                                                                             margin: 0
                                                                                 0
                                                                                 10px;
@@ -843,8 +678,7 @@
                                                                     Managed
                                                                     Service
                                                                 </h3>
-                                                                <p
-                                                                    style="
+                                                                <p style="
                                                                             margin: 0;
 
                                                                             line-height: 1.5;
@@ -871,49 +705,32 @@
                                                 </td>
                                             </tr>
 
-                                            <!-- Card 7 - IP PABX & OmniChannel -->
+                                            <!-- Card 7 - UC PBX & OmniChannel -->
                                             <tr>
-                                                <td
-                                                    style="
+                                                <td style="
                                                             padding: 0 30px 10px;
                                                         ">
-                                                    <table
-                                                        width="100%"
-                                                        border="0"
-                                                        cellpadding="0"
-                                                        cellspacing="0"
-                                                        role="presentation"
-                                                        style="
+                                                    <table width="100%" border="0" cellpadding="0" cellspacing="0"
+                                                        role="presentation" style="
                                                                 border: 1px
                                                                     solid
                                                                     #bfc0c5;
                                                                 border-radius: 10px;
                                                             ">
                                                         <tr>
-                                                            <td
-                                                                align="center"
-                                                                style="
+                                                            <td align="center" style="
                                                                         padding: 25px
                                                                             20px;
                                                                     ">
                                                                 <!-- Icon Circle -->
-                                                                <table
-                                                                    border="0"
-                                                                    cellpadding="0"
-                                                                    cellspacing="0"
-                                                                    role="presentation"
-                                                                    style="
+                                                                <table border="0" cellpadding="0" cellspacing="0"
+                                                                    role="presentation" style="
                                                                             margin: 0
                                                                                 auto
                                                                                 12px;
-                                                                        "
-                                                                    width="40"
-                                                                    height="40">
+                                                                        " width="40" height="40">
                                                                     <tr>
-                                                                        <td
-                                                                            align="center"
-                                                                            valign="middle"
-                                                                            style="
+                                                                        <td align="center" valign="middle" style="
                                                                                     background: linear-gradient(
                                                                                         135deg,
                                                                                         #1172b9,
@@ -923,20 +740,15 @@
                                                                                     width: 40px;
                                                                                     height: 40px;
                                                                                 ">
-                                                                            <img
-                                                                                src="http://materi.aliftama.id/images/icon/Icon_Voip.png"
-                                                                                alt="PABX"
-                                                                                width="26"
-                                                                                height="26"
-                                                                                style="
+                                                                            <img src="http://materi.aliftama.id/images/icon/Icon_Voip.png"
+                                                                                alt="PBX" width="26" height="26" style="
                                                                                         display: block;
                                                                                         border: 0;
                                                                                     " />
                                                                         </td>
                                                                     </tr>
                                                                 </table>
-                                                                <h3
-                                                                    style="
+                                                                <h3 style="
                                                                             margin: 0
                                                                                 0
                                                                                 10px;
@@ -947,44 +759,33 @@
                                                                             line-height: 1.3;
                                                                             text-align: center;
                                                                         ">
-                                                                    IP PABX
+                                                                    UC PBX
                                                                     &
                                                                     OmniChannel
                                                                 </h3>
-                                                                <p
-                                                                    style="
+                                                                <p style="
                                                                             margin: 0;
 
                                                                             line-height: 1.5;
                                                                             text-align: center;
                                                                         ">
-                                                                    Upgrade
-                                                                    perangkat
-                                                                    telepon
-                                                                    internal
-                                                                    dari
-                                                                    Manual
-                                                                    PABX
-                                                                    menjadi
-                                                                    IP PABX
-                                                                    serta
-                                                                    dilengkapi
-                                                                    fitur
-                                                                    OmniChannel
-                                                                    di mana
-                                                                    akan
-                                                                    memudahkan
-                                                                    komunikasi
-                                                                    baik
-                                                                    internal
-                                                                    maupun
-                                                                    eksternal
-                                                                    serta
-                                                                    dapat
-                                                                    terpantau
-                                                                    di
-                                                                    sistem.
+                                                                    Saat ini, sistem teknologi telepon internal
+                                                                    perusahaan yaitu PABX sudah bertransformasi ke IP
+                                                                    PBX bahkan lebih advance
+                                                                    lagi yaitu UC PBX.
                                                                 </p>
+                                                                <br>
+                                                                <p style="
+                                                                            margin: 0;
+
+                                                                            line-height: 1.5;
+                                                                            text-align: center;
+                                                                        ">
+                                                                    Upgrade teknologi tersebut menjadi UC PBX yang
+                                                                    dilengkapi fitur OmniChannel, dimana akan memudahkan
+                                                                    komunikasi di
+                                                                    internal perusahaan maupun ke pihak eksternal serta
+                                                                    mudah dipantau di sistem.
                                                             </td>
                                                         </tr>
                                                     </table>
@@ -993,47 +794,30 @@
 
                                             <!-- Card 8 - Internal File Server -->
                                             <tr>
-                                                <td
-                                                    style="
+                                                <td style="
                                                             padding: 0 30px 10px;
                                                         ">
-                                                    <table
-                                                        width="100%"
-                                                        border="0"
-                                                        cellpadding="0"
-                                                        cellspacing="0"
-                                                        role="presentation"
-                                                        style="
+                                                    <table width="100%" border="0" cellpadding="0" cellspacing="0"
+                                                        role="presentation" style="
                                                                 border: 1px
                                                                     solid
                                                                     #bfc0c5;
                                                                 border-radius: 10px;
                                                             ">
                                                         <tr>
-                                                            <td
-                                                                align="center"
-                                                                style="
+                                                            <td align="center" style="
                                                                         padding: 25px
                                                                             20px;
                                                                     ">
                                                                 <!-- Icon Circle -->
-                                                                <table
-                                                                    border="0"
-                                                                    cellpadding="0"
-                                                                    cellspacing="0"
-                                                                    role="presentation"
-                                                                    style="
+                                                                <table border="0" cellpadding="0" cellspacing="0"
+                                                                    role="presentation" style="
                                                                             margin: 0
                                                                                 auto
                                                                                 12px;
-                                                                        "
-                                                                    width="40"
-                                                                    height="40">
+                                                                        " width="40" height="40">
                                                                     <tr>
-                                                                        <td
-                                                                            align="center"
-                                                                            valign="middle"
-                                                                            style="
+                                                                        <td align="center" valign="middle" style="
                                                                                     background: linear-gradient(
                                                                                         135deg,
                                                                                         #1172b9,
@@ -1043,11 +827,8 @@
                                                                                     width: 40px;
                                                                                     height: 40px;
                                                                                 ">
-                                                                            <img
-                                                                                src="http://materi.aliftama.id/images/icon/Icon_Folder.png"
-                                                                                alt="File Server"
-                                                                                width="26"
-                                                                                height="26"
+                                                                            <img src="http://materi.aliftama.id/images/icon/Icon_Folder.png"
+                                                                                alt="File Server" width="26" height="26"
                                                                                 style="
                                                                                         display: block;
                                                                                         border: 0;
@@ -1055,8 +836,7 @@
                                                                         </td>
                                                                     </tr>
                                                                 </table>
-                                                                <h3
-                                                                    style="
+                                                                <h3 style="
                                                                             margin: 0
                                                                                 0
                                                                                 10px;
@@ -1071,8 +851,7 @@
                                                                     File
                                                                     Server
                                                                 </h3>
-                                                                <p
-                                                                    style="
+                                                                <p style="
                                                                             margin: 0;
 
                                                                             line-height: 1.5;
@@ -1104,47 +883,30 @@
 
                                             <!-- Card 9 - Application Development -->
                                             <tr>
-                                                <td
-                                                    style="
+                                                <td style="
                                                             padding: 0 30px 10px;
                                                         ">
-                                                    <table
-                                                        width="100%"
-                                                        border="0"
-                                                        cellpadding="0"
-                                                        cellspacing="0"
-                                                        role="presentation"
-                                                        style="
+                                                    <table width="100%" border="0" cellpadding="0" cellspacing="0"
+                                                        role="presentation" style="
                                                                 border: 1px
                                                                     solid
                                                                     #bfc0c5;
                                                                 border-radius: 10px;
                                                             ">
                                                         <tr>
-                                                            <td
-                                                                align="center"
-                                                                style="
+                                                            <td align="center" style="
                                                                         padding: 25px
                                                                             20px;
                                                                     ">
                                                                 <!-- Icon Circle -->
-                                                                <table
-                                                                    border="0"
-                                                                    cellpadding="0"
-                                                                    cellspacing="0"
-                                                                    role="presentation"
-                                                                    style="
+                                                                <table border="0" cellpadding="0" cellspacing="0"
+                                                                    role="presentation" style="
                                                                             margin: 0
                                                                                 auto
                                                                                 12px;
-                                                                        "
-                                                                    width="40"
-                                                                    height="40">
+                                                                        " width="40" height="40">
                                                                     <tr>
-                                                                        <td
-                                                                            align="center"
-                                                                            valign="middle"
-                                                                            style="
+                                                                        <td align="center" valign="middle" style="
                                                                                     background: linear-gradient(
                                                                                         135deg,
                                                                                         #1172b9,
@@ -1154,20 +916,16 @@
                                                                                     width: 40px;
                                                                                     height: 40px;
                                                                                 ">
-                                                                            <img
-                                                                                src="http://materi.aliftama.id/images/icon/Icon_Code.png"
-                                                                                alt="App Development"
-                                                                                width="26"
-                                                                                height="26"
-                                                                                style="
+                                                                            <img src="http://materi.aliftama.id/images/icon/Icon_Code.png"
+                                                                                alt="App Development" width="26"
+                                                                                height="26" style="
                                                                                         display: block;
                                                                                         border: 0;
                                                                                     " />
                                                                         </td>
                                                                     </tr>
                                                                 </table>
-                                                                <h3
-                                                                    style="
+                                                                <h3 style="
                                                                             margin: 0
                                                                                 0
                                                                                 10px;
@@ -1181,8 +939,7 @@
                                                                     Application
                                                                     Development
                                                                 </h3>
-                                                                <p
-                                                                    style="
+                                                                <p style="
                                                                             margin: 0;
 
                                                                             line-height: 1.5;
@@ -1207,47 +964,30 @@
 
                                             <!-- Card 10 - Professional ICT Consultant -->
                                             <tr>
-                                                <td
-                                                    style="
+                                                <td style="
                                                             padding: 0 30px 20px;
                                                         ">
-                                                    <table
-                                                        width="100%"
-                                                        border="0"
-                                                        cellpadding="0"
-                                                        cellspacing="0"
-                                                        role="presentation"
-                                                        style="
+                                                    <table width="100%" border="0" cellpadding="0" cellspacing="0"
+                                                        role="presentation" style="
                                                                 border: 1px
                                                                     solid
                                                                     #bfc0c5;
                                                                 border-radius: 10px;
                                                             ">
                                                         <tr>
-                                                            <td
-                                                                align="center"
-                                                                style="
+                                                            <td align="center" style="
                                                                         padding: 25px
                                                                             20px;
                                                                     ">
                                                                 <!-- Icon Circle -->
-                                                                <table
-                                                                    border="0"
-                                                                    cellpadding="0"
-                                                                    cellspacing="0"
-                                                                    role="presentation"
-                                                                    style="
+                                                                <table border="0" cellpadding="0" cellspacing="0"
+                                                                    role="presentation" style="
                                                                             margin: 0
                                                                                 auto
                                                                                 12px;
-                                                                        "
-                                                                    width="40"
-                                                                    height="40">
+                                                                        " width="40" height="40">
                                                                     <tr>
-                                                                        <td
-                                                                            align="center"
-                                                                            valign="middle"
-                                                                            style="
+                                                                        <td align="center" valign="middle" style="
                                                                                     background: linear-gradient(
                                                                                         135deg,
                                                                                         #1172b9,
@@ -1257,20 +997,16 @@
                                                                                     width: 40px;
                                                                                     height: 40px;
                                                                                 ">
-                                                                            <img
-                                                                                src="http://materi.aliftama.id/images/icon/Icon_Meeting.png"
-                                                                                alt="ICT Consultant"
-                                                                                width="26"
-                                                                                height="26"
-                                                                                style="
+                                                                            <img src="http://materi.aliftama.id/images/icon/Icon_Meeting.png"
+                                                                                alt="ICT Consultant" width="26"
+                                                                                height="26" style="
                                                                                         display: block;
                                                                                         border: 0;
                                                                                     " />
                                                                         </td>
                                                                     </tr>
                                                                 </table>
-                                                                <h3
-                                                                    style="
+                                                                <h3 style="
                                                                             margin: 0
                                                                                 0
                                                                                 10px;
@@ -1285,8 +1021,7 @@
                                                                     ICT
                                                                     Consultant
                                                                 </h3>
-                                                                <p
-                                                                    style="
+                                                                <p style="
                                                                             margin: 0;
 
                                                                             line-height: 1.5;
@@ -1314,14 +1049,9 @@
 
                                             <!-- CTA Buttons -->
                                             <tr>
-                                                <td
-                                                    style="padding: 10px"
-                                                    align="center">
+                                                <td style="padding: 10px" align="center">
                                                     <!-- Call Us Button -->
-                                                    <a
-                                                        href="https://s.id/CallAlifNET"
-                                                        target="_blank"
-                                                        style="
+                                                    <a href="https://s.id/CallAlifNET" target="_blank" style="
                                                                 display: inline-flex;
                                                                 align-items: center;
                                                                 gap: 8px;
@@ -1344,12 +1074,8 @@
                                                                         0.1
                                                                     );
                                                             ">
-                                                        <img
-                                                            src="http://materi.aliftama.id/images/icon/Icon_Telephone.png"
-                                                            alt="Call Icon"
-                                                            width="20"
-                                                            height="20"
-                                                            style="
+                                                        <img src="http://materi.aliftama.id/images/icon/Icon_Telephone.png"
+                                                            alt="Call Icon" width="20" height="20" style="
                                                                     display: inline-block;
                                                                     vertical-align: middle;
                                                                     border: 0;
@@ -1358,10 +1084,7 @@
                                                     </a>
 
                                                     <!-- Chat Us Button -->
-                                                    <a
-                                                        href="https://wa.me/62811287711"
-                                                        target="_blank"
-                                                        style="
+                                                    <a href="https://wa.me/62811287711" target="_blank" style="
                                                                 display: inline-flex;
                                                                 align-items: center;
                                                                 gap: 8px;
@@ -1384,12 +1107,8 @@
                                                                         0.1
                                                                     );
                                                             ">
-                                                        <img
-                                                            src="http://materi.aliftama.id/images/icon/Icon_Message.png"
-                                                            alt="Chat Icon"
-                                                            width="20"
-                                                            height="20"
-                                                            style="
+                                                        <img src="http://materi.aliftama.id/images/icon/Icon_Message.png"
+                                                            alt="Chat Icon" width="20" height="20" style="
                                                                     display: inline-block;
                                                                     vertical-align: middle;
                                                                     border: 0;
@@ -1401,32 +1120,22 @@
 
                                             <!-- Footer Section -->
                                             <tr>
-                                                <td
-                                                    align="center"
-                                                    style="
+                                                <td align="center" style="
                                                             padding: 0px 30px
                                                                 10px;
                                                         ">
-                                                    <table
-                                                        width="100%"
-                                                        border="0"
-                                                        cellpadding="0"
-                                                        cellspacing="0"
-                                                        role="presentation"
-                                                        style="
+                                                    <table width="100%" border="0" cellpadding="0" cellspacing="0"
+                                                        role="presentation" style="
                                                                 /* border: 1px solid #bfc0c5; */
                                                                 border-radius: 10px;
                                                             ">
                                                         <tr>
-                                                            <td
-                                                                align="center"
-                                                                style="
+                                                            <td align="center" style="
                                                                         padding: 25px
                                                                             20px;
                                                                         margin: auto;
                                                                     ">
-                                                                <h3
-                                                                    style="
+                                                                <h3 style="
                                                                             margin: 0
                                                                                 0
                                                                                 15px;
@@ -1441,127 +1150,87 @@
                                                                 </h3>
 
                                                                 <!-- Social Media Icons -->
-                                                                <table
-                                                                    border="0"
-                                                                    cellpadding="0"
-                                                                    cellspacing="0"
-                                                                    role="presentation"
-                                                                    align="center"
-                                                                    style="
+                                                                <table border="0" cellpadding="0" cellspacing="0"
+                                                                    role="presentation" align="center" style="
                                                                             margin: 0
                                                                                 auto;
                                                                             text-align: center;
                                                                         ">
                                                                     <tr>
-                                                                        <td
-                                                                            align="center"
-                                                                            style="
+                                                                        <td align="center" style="
                                                                                     padding: 0
                                                                                         10px;
                                                                                 ">
-                                                                            <a
-                                                                                href="https://www.facebook.com/alifnetgroup"
-                                                                                target="_blank"
-                                                                                style="
+                                                                            <a href="https://www.facebook.com/alifnetgroup"
+                                                                                target="_blank" style="
                                                                                         text-decoration: none;
                                                                                     ">
-                                                                                <img
-                                                                                    src="http://materi.aliftama.id/images/icon/Icon_FB_Alif.png"
-                                                                                    width="30"
-                                                                                    height="30"
-                                                                                    alt="Facebook"
-                                                                                    style="
+                                                                                <img src="http://materi.aliftama.id/images/icon/Icon_FB_Alif.png"
+                                                                                    width="30" height="30"
+                                                                                    alt="Facebook" style="
                                                                                             display: block;
                                                                                             border: 0;
                                                                                         " />
                                                                             </a>
                                                                         </td>
-                                                                        <td
-                                                                            align="center"
-                                                                            style="
+                                                                        <td align="center" style="
                                                                                     padding: 0
                                                                                         10px;
                                                                                 ">
-                                                                            <a
-                                                                                href="https://www.instagram.com/alifnetgroup/"
-                                                                                target="_blank"
-                                                                                style="
+                                                                            <a href="https://www.instagram.com/alifnetgroup/"
+                                                                                target="_blank" style="
                                                                                         text-decoration: none;
                                                                                     ">
-                                                                                <img
-                                                                                    src="http://materi.aliftama.id/images/icon/Icon_IG_Alif.png"
-                                                                                    width="30"
-                                                                                    height="30"
-                                                                                    alt="Instagram"
-                                                                                    style="
+                                                                                <img src="http://materi.aliftama.id/images/icon/Icon_IG_Alif.png"
+                                                                                    width="30" height="30"
+                                                                                    alt="Instagram" style="
                                                                                             display: block;
                                                                                             border: 0;
                                                                                         " />
                                                                             </a>
                                                                         </td>
-                                                                        <td
-                                                                            align="center"
-                                                                            style="
+                                                                        <td align="center" style="
                                                                                     padding: 0
                                                                                         10px;
                                                                                 ">
-                                                                            <a
-                                                                                href="https://t.me/onymartin"
-                                                                                target="_blank"
-                                                                                style="
+                                                                            <a href="https://t.me/onymartin"
+                                                                                target="_blank" style="
                                                                                         text-decoration: none;
                                                                                     ">
-                                                                                <img
-                                                                                    src="http://materi.aliftama.id/images/icon/Icon_Telegram_Alif.png"
-                                                                                    width="30"
-                                                                                    height="30"
-                                                                                    alt="Telegram"
-                                                                                    style="
+                                                                                <img src="http://materi.aliftama.id/images/icon/Icon_Telegram_Alif.png"
+                                                                                    width="30" height="30"
+                                                                                    alt="Telegram" style="
                                                                                             display: block;
                                                                                             border: 0;
                                                                                         " />
                                                                             </a>
                                                                         </td>
-                                                                        <td
-                                                                            align="center"
-                                                                            style="
+                                                                        <td align="center" style="
                                                                                     padding: 0
                                                                                         10px;
                                                                                 ">
-                                                                            <a
-                                                                                href="https://www.linkedin.com/company/alifnetgroup/"
-                                                                                target="_blank"
-                                                                                style="
+                                                                            <a href="https://www.linkedin.com/company/alifnetgroup/"
+                                                                                target="_blank" style="
                                                                                         text-decoration: none;
                                                                                     ">
-                                                                                <img
-                                                                                    src="http://materi.aliftama.id/images/icon/Icon_Linkedin_Alif.png"
-                                                                                    width="30"
-                                                                                    height="30"
-                                                                                    alt="LinkedIn"
-                                                                                    style="
+                                                                                <img src="http://materi.aliftama.id/images/icon/Icon_Linkedin_Alif.png"
+                                                                                    width="30" height="30"
+                                                                                    alt="LinkedIn" style="
                                                                                             display: block;
                                                                                             border: 0;
                                                                                         " />
                                                                             </a>
                                                                         </td>
-                                                                        <td
-                                                                            align="center"
-                                                                            style="
+                                                                        <td align="center" style="
                                                                                     padding: 0
                                                                                         10px;
                                                                                 ">
-                                                                            <a
-                                                                                href="https://www.threads.com/@alifnetgroup"
-                                                                                target="_blank"
-                                                                                style="
+                                                                            <a href="https://www.threads.com/@alifnetgroup"
+                                                                                target="_blank" style="
                                                                                         text-decoration: none;
                                                                                     ">
-                                                                                <img
-                                                                                    src="http://materi.aliftama.id/images/icon/Icon_Thread_Alif.png"
-                                                                                    width="30"
-                                                                                    height="30"
-                                                                                    alt="Threads"
+                                                                                <img src="http://materi.aliftama.id/images/icon/Icon_Thread_Alif.png"
+                                                                                    width="30" height="30" alt="Threads"
                                                                                     style="
                                                                                             display: block;
                                                                                             border: 0;
@@ -1578,33 +1247,21 @@
 
                                             <!-- Call Center Card -->
                                             <tr>
-                                                <td
-                                                    align="center"
-                                                    style="
+                                                <td align="center" style="
                                                             padding: 0 30px 10px;
-                                                        "
-                                                    width="100%">
-                                                    <table
-                                                        width="100%"
-                                                        border="0"
-                                                        cellpadding="0"
-                                                        cellspacing="0"
-                                                        role="presentation"
-                                                        style="
+                                                        " width="100%">
+                                                    <table width="100%" border="0" cellpadding="0" cellspacing="0"
+                                                        role="presentation" style="
                                                                 width: 100%;
                                                                 /* border: 1px solid #bfc0c5; */
                                                                 border-radius: 10px;
                                                             ">
                                                         <tr>
-                                                            <td
-                                                                align="center"
-                                                                style="
+                                                            <td align="center" style="
                                                                         padding: 0px
                                                                             20px;
-                                                                    "
-                                                                width="100%">
-                                                                <h3
-                                                                    style="
+                                                                    " width="100%">
+                                                                <h3 style="
                                                                             margin: 0
                                                                                 0
                                                                                 12px;
@@ -1619,8 +1276,7 @@
                                                                     Center
                                                                     24 Jam
                                                                 </h3>
-                                                                <p
-                                                                    style="
+                                                                <p style="
                                                                             margin: 0
                                                                                 0
                                                                                 5px;
@@ -1633,8 +1289,7 @@
                                                                     : 0811
                                                                     28 7711
                                                                 </p>
-                                                                <p
-                                                                    style="
+                                                                <p style="
                                                                             margin: 0
                                                                                 0
                                                                                 5px;
@@ -1647,8 +1302,7 @@
                                                                     0818 26
                                                                     7711
                                                                 </p>
-                                                                <p
-                                                                    style="
+                                                                <p style="
                                                                             margin: 0;
                                                                             color: #666666;
 
@@ -1668,31 +1322,27 @@
                                             <!-- Copyright -->
 
                                             <tr>
-                                                <td
-                                                    style="
+                                                <td style="
                                                             background-color: #ffffff;
                                                             padding: 20px;
                                                             text-align: center;
                                                             font-size: 12px;
                                                             color: #666666;
                                                         ">
-                                                    <p
-                                                        style="
+                                                    <p style="
                                                                 margin: 0 0 8px
                                                                     0;
                                                             ">
-                                                        Jika Anda tidak ingin menerima email seperti ini lagi, silakan Klik
-                                                        <a
-                                                            href="https://materi.aliftama.id/unsubscribe/{{ $recipient->id }}"
-                                                            target="_blank"
-                                                            style="
+                                                        Jika Anda tidak ingin menerima email seperti ini lagi, silakan
+                                                        Klik
+                                                        <a href="https://materi.aliftama.id/unsubscribe/{{ $recipient->id }}"
+                                                            target="_blank" style="
                                                                     color: #004aad;
                                                                     text-decoration: none;
                                                                 ">berhenti
                                                             berlangganan</a>.
                                                     </p>
-                                                    <p
-                                                        style="
+                                                    <p style="
                                                                 margin: 20px 0
                                                                     8px 0;
                                                             ">
