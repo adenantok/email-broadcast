@@ -103,7 +103,7 @@
                               <tr>
                                 <td align="center" bgcolor="#0a1e5e" class="blue-section" style="
                                       background-color: #0a1e5e !important;
-                                      padding: 40px 0px 30px;
+                                      padding: 40px 0px 20px;
                                     ">
                                   <!--[if mso]>
                                                     <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fillcolor="#0a1e5e" stroke="f" style="width:600px;">
@@ -140,7 +140,7 @@
                               <tr>
                                 <td align="center" bgcolor="#0a1e5e" class="blue-section" style="
                                       background-color: #0a1e5e !important;
-                                      padding: 30px 30px 20px;
+                                      padding: 0px 30px 20px;
                                     ">
                                   <!--[if mso]>
                                                     <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fillcolor="#0a1e5e" stroke="f" style="width:600px;">

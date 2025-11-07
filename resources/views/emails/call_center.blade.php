@@ -85,7 +85,7 @@
                                                 width: 600px;
                                                 margin: 0 auto;
                                                 border-collapse: separate;
-                                                border-spacing: 0 10px;
+                                                border-spacing: 0 5px;
                                             " width="600">
                                         <tbody>
 
@@ -131,7 +131,7 @@
                                                 <td style="
                                                             mso-table-lspace: 0pt;
                                                             mso-table-rspace: 0pt;
-                                                            padding: 0 30px 10px;
+                                                            padding: 0 0px 0px;
                                                             background-color: #0a1e5e;
                                                             border-radius: 20px;
                                                         ">
@@ -149,11 +149,11 @@
                                                                     <img src="http://materi.aliftama.id/images/Alifnet_Foto_Call_Center.png"
                                                                         alt="Contact AlifNET - 0811 28 7711" style="
                                                                                 display: block;
-                                                                                margin: 0 auto;
+                                                                                margin: 0;
                                                                                 height: auto;
                                                                                 border: 0;
                                                                                 width: 100%;
-                                                                                max-width: 540px;
+                                                                                max-width: 6000px;
                                                                                 border-radius: 12px;
                                                                             " />
                                                                 </a>
