@@ -312,6 +312,44 @@
                         </td>
                       </tr>
 
+                      <!-- AlifNET Logo -->
+                      <tr>
+                        <td align="center" style="
+                                                    padding-bottom: 20px;
+                                                    padding-top: 20px;
+                                                    background-color: #ffffff;
+                                                  ">
+                          <a href="https://aliftama.id/" target="_blank">
+                            <img src="http://materi.aliftama.id/images/logo/Logo_AlifNET_Internet_Desa.png"
+                              alt="AlifNET" style="
+                                                        display: block;
+                                                        margin: 0 auto;
+                                                        height: auto;
+                                                        border: 0;
+                                                        max-width: 240px;
+                                                      " />
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td align="center" style="
+                                                    padding: 10px 30px 0px;
+                                                    background-color: #ffffff;
+                                                  ">
+                          <h2 style="
+                                                      margin: 0 0 0px;
+                                                      font-family: 'Segoe UI', Arial, sans-serif;
+                                                      font-size: 22px;
+                                                      font-weight: 500;
+                                                      color: #000000;
+                                                      text-align: center;
+                                                      line-height: 1.3;
+                                                    ">
+                            Internet Berkualitas, Harga Hemat
+                          </h2>
+                        </td>
+                      </tr>
+
                       <!-- Footer Section -->
                       <tr>
                         <td align="center" style="
