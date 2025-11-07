@@ -268,7 +268,7 @@ class BroadcastController extends Controller
                 $mail->Username = env('MAIL_BROADCAST_USER');
                 $mail->Password = env('MAIL_BROADCAST_PASS');
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-                $mail->Port = 587;
+                $mail->Port = 465;
                 $mail->SMTPKeepAlive = true;
 
                 $mail->Timeout = 30;
