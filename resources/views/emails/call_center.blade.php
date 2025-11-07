@@ -84,6 +84,8 @@
                                                 color: #000000;
                                                 width: 600px;
                                                 margin: 0 auto;
+                                                border-collapse: separate;
+                                                border-spacing: 0 10px;
                                             " width="600">
                                         <tbody>
 
@@ -96,6 +98,7 @@
                                                             mso-table-rspace: 0pt;
                                                             padding: 0 30px 10px;
                                                             background-color: #0a1e5e;
+                                                            border-radius: 20px;
                                                         ">
                                                     <table width="100%" border="0" cellpadding="0" cellspacing="0"
                                                         role="presentation" style="
@@ -130,6 +133,7 @@
                                                             mso-table-rspace: 0pt;
                                                             padding: 0 30px 10px;
                                                             background-color: #0a1e5e;
+                                                            border-radius: 20px;
                                                         ">
                                                     <table width="100%" border="0" cellpadding="0" cellspacing="0"
                                                         role="presentation" style="
@@ -161,7 +165,8 @@
 
                                             <!-- CTA Buttons -->
                                             <tr>
-                                                <td style="padding: 10px" align="center">
+                                                <td style="padding: 10px; background-color: #0a1e5e; border-radius: 20px;"
+                                                    align="center">
                                                     <!-- Call Us Button -->
                                                     <a href="https://s.id/CallAlifNET" target="_blank" style="
                                                                 display: inline-flex;
