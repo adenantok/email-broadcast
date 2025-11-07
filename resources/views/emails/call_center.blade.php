@@ -107,7 +107,7 @@
                                                             ">
                                                         <tr>
                                                             <td align="center" style="
-                                                                        padding: 0;
+                                                                        padding-top: 10px;
                                                                         text-align: center;
                                                                     ">
                                                                 <img src="https://materi.aliftama.id/images/Alifnet_Call_Center.png"
@@ -131,7 +131,7 @@
                                                 <td style="
                                                             mso-table-lspace: 0pt;
                                                             mso-table-rspace: 0pt;
-                                                            padding: 0 0px 0px;
+                                                            padding: 10px 0px 0px;
                                                             background-color: #0a1e5e;
                                                             border-radius: 20px;
                                                         ">
