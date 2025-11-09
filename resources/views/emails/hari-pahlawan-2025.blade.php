@@ -173,8 +173,7 @@
                                           text-align: center;
                                           line-height: 1.3;
                                         ">
-                                      Resolusi jihad ini kemudian melahirkan peristiwa heroik tanggal <span
-                                        style="color: #007B8F;">10 November 1945</span>
+                                      Resolusi jihad ini kemudian melahirkan peristiwa heroik tanggal10 November 1945
                                       yang diperingati sebagai Hari Pahlawan.
                                     </h2>
 
@@ -379,6 +378,55 @@
                         </td>
                       </tr>
 
+                      <!-- Call Center Card -->
+                      <tr>
+                        <td align="center" style="
+                                                    padding: 0 30px 10px;
+                                                    background-color: #ffffff;
+                                                  " width="100%">
+                          <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation"
+                            style="width: 100%; border-radius: 10px">
+                            <tr>
+                              <td align="center" style="padding: 0px 20px" width="100%">
+                                <h3 style="
+                                                            margin: 0 0 12px;
+                                                            color: #0f1736;
+                                                            font-size: 18px;
+                                                            font-weight: 700;
+                                                            line-height: 1.3;
+                                                            text-align: center;
+                                                          ">
+                                  Call Center 24 Jam
+                                </h3>
+                                <p style="
+                                                            margin: 0 0 5px;
+                                                            color: #666666;
+                                                            line-height: 1.5;
+                                                            text-align: center;
+                                                          ">
+                                  Telkomsel: 0811 28 7711
+                                </p>
+                                <p style="
+                                                            margin: 0 0 5px;
+                                                            color: #666666;
+                                                            line-height: 1.5;
+                                                            text-align: center;
+                                                          ">
+                                  XL: 0818 26 7711
+                                </p>
+                                <p style="
+                                                            margin: 0;
+                                                            color: #666666;
+                                                            line-height: 1.5;
+                                                            text-align: center;
+                                                          ">
+                                  Indosat: 0816 50 7711
+                                </p>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
 
                       <!-- Copyright & Unsubscribe -->
                       <tr>

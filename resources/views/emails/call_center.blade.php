@@ -287,17 +287,19 @@
                                                                             20px;
                                                                         margin: auto;
                                                                     ">
-                                                                <h3 style="
-                                                                            margin: 0
-                                                                                0
-                                                                                15px;
-                                                                            color: #0f1736;
-                                                                            font-size: 18px;
-                                                                            font-weight: 700;
-                                                                            line-height: 1.3;
-                                                                            text-align: center;
-                                                                        ">
-                                                                    Internet Berkualitas Harga Hemat
+                                                                <h3
+                                                                    style="
+                                                                                                                                                margin: 0
+                                                                                                                                                    0
+                                                                                                                                                    15px;
+                                                                                                                                                color: #0f1736;
+                                                                    
+                                                                                                                                                font-size: 18px;
+                                                                                                                                                font-weight: 700;
+                                                                                                                                                line-height: 1.3;
+                                                                                                                                                text-align: center;
+                                                                                                                                            ">
+                                                                    Follow Us
                                                                 </h3>
 
                                                                 <!-- Social Media Icons -->
@@ -396,6 +398,55 @@
                                                 </td>
                                             </tr>
 
+                                            <!-- Call Center Card -->
+                                            <tr>
+                                                <td align="center" style="
+                                                                          padding: 0 30px 10px;
+                                                                          background-color: #ffffff;
+                                                                        " width="100%">
+                                                    <table width="100%" border="0" cellpadding="0" cellspacing="0"
+                                                        role="presentation" style="width: 100%; border-radius: 10px">
+                                                        <tr>
+                                                            <td align="center" style="padding: 0px 20px" width="100%">
+                                                                <h3 style="
+                                                                                  margin: 0 0 12px;
+                                                                                  color: #0f1736;
+                                                                                  font-size: 18px;
+                                                                                  font-weight: 700;
+                                                                                  line-height: 1.3;
+                                                                                  text-align: center;
+                                                                                ">
+                                                                    Call Center 24 Jam
+                                                                </h3>
+                                                                <p style="
+                                                                                  margin: 0 0 5px;
+                                                                                  color: #666666;
+                                                                                  line-height: 1.5;
+                                                                                  text-align: center;
+                                                                                ">
+                                                                    Telkomsel: 0811 28 7711
+                                                                </p>
+                                                                <p style="
+                                                                                  margin: 0 0 5px;
+                                                                                  color: #666666;
+                                                                                  line-height: 1.5;
+                                                                                  text-align: center;
+                                                                                ">
+                                                                    XL: 0818 26 7711
+                                                                </p>
+                                                                <p style="
+                                                                                  margin: 0;
+                                                                                  color: #666666;
+                                                                                  line-height: 1.5;
+                                                                                  text-align: center;
+                                                                                ">
+                                                                    Indosat: 0816 50 7711
+                                                                </p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
 
                                             <!-- Copyright -->
                                             <tr>
@@ -409,8 +460,8 @@
                                                                 margin: 0 0 8px
                                                                     0;
                                                             ">
-                                                        Jika Anda tidak ingin menerima email seperti ini lagi, silakan
-                                                        Klik
+                                                        Jika Anda tidak ingin menerima informasi & promosi dari AlifNET,
+                                                        silahkan klik
                                                         <a href="https://materi.aliftama.id/unsubscribe/{{ $recipient->id }}"
                                                             target="_blank" style="
                                                                     color: #004aad;

@@ -1333,8 +1333,8 @@
                                                                 margin: 0 0 8px
                                                                     0;
                                                             ">
-                                                        Jika Anda tidak ingin menerima email seperti ini lagi, silakan
-                                                        Klik
+                                                        Jika Anda tidak ingin menerima informasi & promosi dari AlifNET,
+                                                        silahkan klik
                                                         <a href="https://materi.aliftama.id/unsubscribe/{{ $recipient->id }}"
                                                             target="_blank" style="
                                                                     color: #004aad;
