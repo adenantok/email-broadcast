@@ -275,7 +275,7 @@ class BroadcastController extends Controller
                 $mail->SMTPDebug = 0;
 
                 // ✅ FIX: Email pengirim dan nama yang muncul di inbox
-                $mail->setFrom('sales@aliftama.id', 'Hayyi Birrulwalidaini Ihsan');
+                $mail->setFrom('sales@aliftama.id', 'Team Sales AlifNET');
 
                 // ✅ FIX: Reply-To ke email Adnan
                 // $mail->addReplyTo('hayyi@aliftama.id', 'Hayyi Birrulwalidaini Ihsan');
