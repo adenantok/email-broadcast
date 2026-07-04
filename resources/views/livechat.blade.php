@@ -22,7 +22,7 @@
     <p>Silakan klik ikon chat di pojok kanan bawah.</p>
 
     <!-- Yeastar Live Chat -->
-    <script src="https://alifnet.ras.yeastar.com/live_chat.v1.0.0.js?channelNumber=LC00000"></script>
+    <script src="https://alifnet.ras.yeastar.com/live_chat.v1.0.0.js?channelNumber=LC00001"></script>
 
 </body>
 </html>
