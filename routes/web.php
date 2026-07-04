@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\BroadcastController;
 use App\Http\Controllers\UnsubscribeController;
+use App\Http\Controllers\LiveChatController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -50,3 +51,5 @@ Route::middleware('checklogin')->group(function () {
 Route::get('/broadcast/preview/{id}', [BroadcastController::class, 'preview'])->name('broadcast.preview');
 Route::get('/unsubscribe/{id}', [UnsubscribeController::class, 'show'])->name('unsubscribe.show');
 Route::post('/unsubscribe/{id}', [UnsubscribeController::class, 'confirm'])->name('unsubscribe.confirm');
+
+Route::get('/livechat', [LiveChatController::class, 'index'])->name('livechat');
