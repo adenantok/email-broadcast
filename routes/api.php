@@ -19,4 +19,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// Dipakai aplikasi lain — JANGAN diubah.
 Route::post('/mail-relay', [MailRelayController::class, 'send']);
+
+// Khusus aplikasi Email Marketing AlifNET (Google Apps Script).
+Route::post('/mail-relay/marketing', [MailRelayController::class, 'sendMarketing']);
