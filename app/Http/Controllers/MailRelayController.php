@@ -135,7 +135,7 @@ class MailRelayController extends Controller
             $mail->SMTPDebug  = 0;
             $mail->CharSet    = 'UTF-8';
 
-            $mail->setFrom(env('no-reply@aliftama.id'), $fromName);
+            $mail->setFrom('no-reply@aliftama.id', $fromName);
             $mail->addAddress($to, $toName);
             foreach ($ccList as $cc) {
                 $mail->addCC($cc);
