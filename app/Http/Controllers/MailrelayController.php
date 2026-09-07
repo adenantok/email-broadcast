@@ -148,8 +148,8 @@ class MailRelayController extends Controller
 
             return response()->json(['ok' => true, 'message' => 'Email berhasil dikirim.']);
 
-        } catch (Exception $e) {
-            return response()->json(['ok' => false, 'message' => 'Gagal kirim email: ' . $mail->ErrorInfo], 500);
+        } catch (\Throwable $e) {
+            return response()->json(['ok' => false, 'message' => 'Gagal kirim email: ' . $e->getMessage()], 500);
         }
     }
 }
